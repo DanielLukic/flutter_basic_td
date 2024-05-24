@@ -7,6 +7,16 @@ void smokeAt(Vector2 position) {
   world.level?.add(Smoke(position: position));
 }
 
+void smokeAround(Vector2 position, Vector2 size, [int? count]) {
+  count ??= size.x ~/ 4;
+  repeat(count, (_) {
+    final at = randomNormalizedVector();
+    at.x *= size.x;
+    at.y *= size.y;
+    world.level?.add(Smoke(position: position + at));
+  });
+}
+
 class Smoke extends SpriteAnimationComponent {
   Smoke({super.position})
       : super(

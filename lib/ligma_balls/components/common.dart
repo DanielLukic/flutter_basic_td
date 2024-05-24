@@ -9,6 +9,12 @@ mixin Defender {}
 
 Vector2 randomNormalizedVector() => Vector2.random(random) - Vector2.random();
 
+void repeat(int count, void Function(int) func) {
+  for (var i = 0; i < count; i++) {
+    func(i);
+  }
+}
+
 bool debug = false;
 bool dev = kDebugMode;
 
