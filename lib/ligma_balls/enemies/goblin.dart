@@ -1,8 +1,9 @@
-import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:ligma_balls/ligma_balls/adversaries/prime.dart';
 import 'package:ligma_balls/ligma_balls/components/common.dart';
+import 'package:ligma_balls/ligma_balls/components/smoke.dart';
 import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
 import '../components/life.dart';
@@ -50,9 +51,11 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    logInfo(other.runtimeType);
     if (other is Projectile && other.isTarget(this)) {
       onHit(this);
+      other.active = false;
+      other.add(RemoveEffect(delay: 0.25));
+      smokeAround(other.position, Vector2.all(16));
     }
   }
 }
