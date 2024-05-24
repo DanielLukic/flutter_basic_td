@@ -40,12 +40,14 @@ Future<SpriteAnimation> vim() async => await game.loadSpriteAnimation(
       ),
     );
 
+typedef IsTarget = bool Function(PositionComponent);
+
 fireProjectile(
   SpriteAnimation it,
   PositionComponent origin,
   PositionComponent target,
   double speed,
-  bool Function(PositionComponent) isTarget,
+  IsTarget isTarget,
 ) {
   final dir = (target.position - origin.position).normalized();
   final projectile = Projectile(
@@ -61,7 +63,7 @@ fireProjectile(
 class Projectile extends SpriteAnimationComponent {
   final Vector2 _direction;
   final double _speed;
-  final bool Function(PositionComponent) isTarget;
+  final IsTarget _isTarget;
 
   double _lifetime;
 
@@ -69,12 +71,13 @@ class Projectile extends SpriteAnimationComponent {
     required super.animation,
     required Vector2 direction,
     required double speed,
-    required this.isTarget,
+    required IsTarget isTarget,
     double lifetime = 5,
     super.anchor = Anchor.center,
     super.key,
   })  : _lifetime = lifetime,
         _speed = speed,
+        _isTarget = isTarget,
         _direction = direction {
     add(CircleHitbox(
       isSolid: true,
@@ -83,12 +86,18 @@ class Projectile extends SpriteAnimationComponent {
     priority = 200;
   }
 
+  bool active = true;
+
+  bool isTarget(PositionComponent it) => active && _isTarget(it);
+
   @override
   void update(double dt) {
     super.update(dt);
     if (_lifetime > 0) {
       _lifetime -= dt;
-      position += _direction * _speed * dt;
+      if (active) {
+        position += _direction * _speed * dt;
+      }
     } else {
       removeFromParent();
     }
