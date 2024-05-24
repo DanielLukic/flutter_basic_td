@@ -5,7 +5,6 @@ import 'package:flame/input.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ligma_balls/viewport.dart';
 
 import 'ligma_balls/components/common.dart';
 import 'ligma_balls/components/ligma_world.dart';
@@ -34,11 +33,12 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
   @override
   onGameResize(Vector2 size) {
     super.onGameResize(size);
-    camera.viewfinder.anchor = Anchor.topLeft;
-    camera.viewport = FixedViewport(
-      gameScreenSize: Vector2(320, 320),
-      children: [_ticks(), _frames()],
+    camera = CameraComponent.withFixedResolution(
+      width: 320,
+      height: 320,
+      hudComponents: [_ticks(), _frames()],
     );
+    camera.viewfinder.anchor = Anchor.topLeft;
   }
 
   _ticks() => RenderTps(
