@@ -8,6 +8,7 @@ import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
 import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
+import '../defenders/twitch.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
 import '../util/extensions.dart';
@@ -71,6 +72,8 @@ class GameLevel extends Component {
       Prime(primeEntity),
       NeoVim(position: Vector2(64, 32)),
       NeoVim(position: Vector2(128, 32)),
+      Twitch(position: Vector2(144, 80)),
+      Twitch(position: Vector2(128, 160)),
       TiledMapOverlay(map.tileMap, trees),
       LevelDialog('Level $id', map, ok: (it) {
         remove(it);
