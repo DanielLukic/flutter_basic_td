@@ -79,7 +79,7 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
     world.loadLevel(level);
   }
 
-  int level = 1;
+  int level = 2;
 
   @override
   update(double dt) =>
