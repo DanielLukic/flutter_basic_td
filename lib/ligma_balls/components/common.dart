@@ -1,8 +1,18 @@
 import 'dart:math';
 
 import 'package:flame/cache.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
+
+typedef IsTarget = bool Function(PositionComponent);
+
+enum ProjectileKind {
+  ligmaBalls,
+  netflix,
+  twitchChat,
+  vim,
+}
 
 mixin Attacker {}
 mixin Defender {}

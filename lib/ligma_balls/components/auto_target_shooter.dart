@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../components/debug.dart';
+import 'debug.dart';
 
 class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
   final void Function(PositionComponent, PositionComponent) _fire;

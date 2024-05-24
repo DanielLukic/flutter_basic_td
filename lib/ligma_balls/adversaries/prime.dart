@@ -2,12 +2,12 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:ligma_balls/ligma_balls/components/smoke.dart';
-import 'package:ligma_balls/ligma_balls/enemies/auto_target_shooter.dart';
-import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
+import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
 import '../components/life.dart';
+import '../components/projectile.dart';
+import '../components/smoke.dart';
 
 class Prime extends SpriteComponent with CollisionCallbacks, Life {
   //

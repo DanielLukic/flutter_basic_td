@@ -1,13 +1,14 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:ligma_balls/ligma_balls/adversaries/prime.dart';
-import 'package:ligma_balls/ligma_balls/components/common.dart';
-import 'package:ligma_balls/ligma_balls/components/smoke.dart';
-import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
+import '../adversaries/prime.dart';
+import '../components/auto_target_shooter.dart';
+import '../components/common.dart';
 import '../components/life.dart';
-import 'auto_target_shooter.dart';
+import '../components/projectile.dart';
+import '../components/projectiles.dart';
+import '../components/smoke.dart';
 import 'waypoints.dart';
 
 class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
@@ -19,7 +20,6 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
 
   @override
   onLoad() async {
-    _projectileAnim = await twitchChat();
     add(AutoTargetShooter(
       fire: _fire,
       isTarget: (it) => it is Prime || it is Defender,
@@ -27,12 +27,17 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
     add(CircleHitbox(collisionType: CollisionType.active));
     addLifeIndicatorTo(this);
     maxHits = 1;
+
+    _bullet = await makeProjectilePrototype(
+      ProjectileKind.twitchChat,
+      (it) => it is Prime || it is Defender,
+    );
   }
 
-  late SpriteAnimation _projectileAnim;
+  late Projectile _bullet;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_projectileAnim, origin, target, 40, _isTarget);
+    fireProjectile(_bullet, origin, target, 40, _isTarget);
   }
 
   bool _isTarget(PositionComponent it) => it is Prime || it is Defender;
