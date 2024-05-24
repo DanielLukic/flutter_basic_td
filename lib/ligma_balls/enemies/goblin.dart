@@ -1,13 +1,15 @@
+import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:ligma_balls/ligma_balls/adversaries/prime.dart';
 import 'package:ligma_balls/ligma_balls/components/common.dart';
 import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
+import '../components/life.dart';
 import 'auto_target_shooter.dart';
 import 'waypoints.dart';
 
-class Goblin extends SpriteComponent with Attacker {
+class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
   Goblin({
     required super.position,
     required super.sprite,
@@ -21,14 +23,18 @@ class Goblin extends SpriteComponent with Attacker {
       fire: _fire,
       isTarget: (it) => it is Prime || it is Defender,
     ));
-    add(CircleHitbox(collisionType: CollisionType.passive));
+    add(CircleHitbox(collisionType: CollisionType.active));
+    addLifeIndicatorTo(this);
+    maxHits = 1;
   }
 
   late SpriteAnimation _projectileAnim;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_projectileAnim, origin, target, 40);
+    fireProjectile(_projectileAnim, origin, target, 40, _isTarget);
   }
+
+  bool _isTarget(PositionComponent it) => it is Prime || it is Defender;
 
   double _waytime = 0;
 
@@ -36,5 +42,17 @@ class Goblin extends SpriteComponent with Attacker {
   void update(double dt) {
     waypoints.setPositionAt(_waytime, 35, position);
     _waytime += dt;
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+    logInfo(other.runtimeType);
+    if (other is Projectile && other.isTarget(this)) {
+      onHit(this);
+    }
   }
 }

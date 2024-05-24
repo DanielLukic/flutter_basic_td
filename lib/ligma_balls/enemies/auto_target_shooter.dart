@@ -13,20 +13,22 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
   AutoTargetShooter({
     required void Function(PositionComponent, PositionComponent) fire,
     required bool Function(Component) isTarget,
+    double radius = 32,
     double reloadTime = 1,
   })  : _fire = fire,
         _isTarget = isTarget,
         _reloadTime = reloadTime {
     //
     add(CircleHitbox(
-      radius: 32,
+      radius: radius,
       position: Vector2.all(8),
       anchor: Anchor.center,
       collisionType: CollisionType.active,
+      isSolid: true,
     ));
 
     add(DebugCircleHitbox(
-      radius: 32,
+      radius: radius,
       position: Vector2.all(8),
       anchor: Anchor.center,
       paint: Paint()..color = const Color(0x40000000),

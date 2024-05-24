@@ -45,9 +45,15 @@ fireProjectile(
   PositionComponent origin,
   PositionComponent target,
   double speed,
+  bool Function(PositionComponent) isTarget,
 ) {
   final dir = (target.position - origin.position).normalized();
-  final projectile = Projectile(animation: it, direction: dir, speed: speed);
+  final projectile = Projectile(
+    animation: it,
+    direction: dir,
+    speed: speed,
+    isTarget: isTarget,
+  );
   projectile.position.setFrom(origin.position);
   world.level?.add(projectile);
 }
@@ -55,6 +61,7 @@ fireProjectile(
 class Projectile extends SpriteAnimationComponent {
   final Vector2 _direction;
   final double _speed;
+  final bool Function(PositionComponent) isTarget;
 
   double _lifetime;
 
@@ -62,6 +69,7 @@ class Projectile extends SpriteAnimationComponent {
     required super.animation,
     required Vector2 direction,
     required double speed,
+    required this.isTarget,
     double lifetime = 5,
     super.anchor = Anchor.center,
     super.key,

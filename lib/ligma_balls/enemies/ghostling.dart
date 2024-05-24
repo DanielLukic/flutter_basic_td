@@ -27,8 +27,10 @@ class Ghostling extends SpriteComponent with Attacker {
   late SpriteAnimation _projectileAnim;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_projectileAnim, origin, target, 80);
+    fireProjectile(_projectileAnim, origin, target, 80, _isTarget);
   }
+
+  bool _isTarget(PositionComponent it) => it is Prime || it is Defender;
 
   double _waytime = 0;
 
