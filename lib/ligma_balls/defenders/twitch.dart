@@ -18,24 +18,15 @@ class Twitch extends SpriteComponent with CollisionCallbacks, Defender, Life {
   Future<void> onLoad() async {
     sprite = await game.loadSprite('twitch.png');
 
-    add(AutoTargetShooter(
-      radius: 64,
-      fire: _fire,
-      isTarget: isAttacker,
-    ));
-    add(CircleHitbox(radius: size.x / 2));
-    addLifeIndicatorTo(this);
-
-    _bullet = await makeProjectilePrototype(
+    final projectile = await makeProjectilePrototype(
       ProjectileKind.twitchChat,
       isAttacker,
+      60,
     );
-  }
 
-  late Projectile _bullet;
-
-  void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 100);
+    add(AutoTargetShooter(radius: 64, projectile: projectile));
+    add(CircleHitbox(radius: size.x / 2));
+    addLifeIndicatorTo(this);
   }
 
   double _pulseTime = 0;

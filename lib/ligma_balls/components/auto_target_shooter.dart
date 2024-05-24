@@ -3,21 +3,18 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import 'common.dart';
 import 'debug.dart';
+import 'projectile.dart';
 
 class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
-  final void Function(PositionComponent, PositionComponent) _fire;
-  final IsTarget _isTarget;
+  final Projectile _projectile;
   final double _reloadTime;
 
   AutoTargetShooter({
-    required void Function(PositionComponent, PositionComponent) fire,
-    required IsTarget isTarget,
+    required Projectile projectile,
     double radius = 32,
     double reloadTime = 1,
-  })  : _fire = fire,
-        _isTarget = isTarget,
+  })  : _projectile = projectile,
         _reloadTime = reloadTime {
     //
     add(CircleHitbox(
@@ -49,7 +46,7 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
       _reload -= dt;
     } else {
       final origin = parent as PositionComponent;
-      _fire(origin, target);
+      fireProjectile(_projectile, origin, target);
       _reload = _reloadTime;
     }
   }
@@ -60,12 +57,14 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    if (_isTarget(other)) _activeTarget = other;
+    if (_projectile.isTarget(other)) _activeTarget = other;
   }
 
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
-    if (_isTarget(other) && _activeTarget == other) _activeTarget = null;
+    if (_projectile.isTarget(other) && _activeTarget == other) {
+      _activeTarget = null;
+    }
   }
 }

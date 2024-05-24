@@ -6,6 +6,7 @@ import 'common.dart';
 Future<Projectile> makeProjectilePrototype(
   ProjectileKind kind,
   IsTarget isTarget,
+  double speed,
 ) async {
   final anim = await switch (kind) {
     ProjectileKind.ligmaBalls => _ligmaBalls(),
@@ -13,7 +14,12 @@ Future<Projectile> makeProjectilePrototype(
     ProjectileKind.twitchChat => _twitchChat(),
     ProjectileKind.vim => _vim(),
   };
-  return Projectile(kind: kind, animation: anim, isTarget: isTarget);
+  return Projectile(
+    kind: kind,
+    animation: anim,
+    isTarget: isTarget,
+    speed: speed,
+  );
 }
 
 Future<SpriteAnimation> _ligmaBalls() async =>

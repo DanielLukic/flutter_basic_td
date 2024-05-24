@@ -8,12 +8,10 @@ fireProjectile(
   Projectile prototype,
   PositionComponent origin,
   PositionComponent target,
-  double speed,
 ) {
   final dir = (target.position - origin.position).normalized();
   final projectile = prototype.clone();
   projectile.direction = dir;
-  projectile.speed = speed;
   projectile.position.setFrom(origin.position);
   world.level?.add(projectile);
 }
@@ -22,15 +20,17 @@ class Projectile extends SpriteAnimationComponent {
   final ProjectileKind kind;
   final IsTarget _isTarget;
 
-  double lifetime = 5;
+  double speed;
+  double lifetime;
 
   late Vector2 direction;
-  late double speed;
 
   Projectile({
     required this.kind,
     required super.animation,
     required IsTarget isTarget,
+    required this.speed,
+    this.lifetime = 5,
     super.anchor = Anchor.center,
     super.key,
   }) : _isTarget = isTarget {
@@ -44,8 +44,10 @@ class Projectile extends SpriteAnimationComponent {
   Projectile clone() => Projectile(
         kind: kind,
         animation: super.animation,
+        speed: speed,
+        lifetime: lifetime,
         isTarget: _isTarget,
-      )..lifetime = lifetime;
+      );
 
   bool active = true;
 

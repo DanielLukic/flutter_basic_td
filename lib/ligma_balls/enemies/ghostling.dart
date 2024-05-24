@@ -22,27 +22,18 @@ class Ghostling extends SpriteComponent
 
   @override
   onLoad() async {
-    add(AutoTargetShooter(
-      fire: _fire,
-      isTarget: (it) => it is Prime || it is Defender,
-    ));
+    final projectile = await makeProjectilePrototype(
+      ProjectileKind.ligmaBalls,
+      isDefender,
+      40,
+    );
+
+    add(AutoTargetShooter(projectile: projectile));
     add(CircleHitbox(collisionType: CollisionType.active));
+
     addLifeIndicatorTo(this);
     maxHits = 2;
-
-    _bullet = await makeProjectilePrototype(
-      ProjectileKind.ligmaBalls,
-      (it) => it is Prime || it is Defender,
-    );
   }
-
-  late Projectile _bullet;
-
-  void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 80);
-  }
-
-  bool _isTarget(PositionComponent it) => it is Prime || it is Defender;
 
   double _waytime = 0;
 
