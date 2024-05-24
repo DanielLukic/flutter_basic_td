@@ -4,6 +4,9 @@ import 'package:flame/cache.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 
+mixin Attacker {}
+mixin Defender {}
+
 Vector2 randomNormalizedVector() => Vector2.random(random) - Vector2.random();
 
 bool debug = false;

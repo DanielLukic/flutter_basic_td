@@ -9,7 +9,7 @@ import '../components/common.dart';
 import '../components/life.dart';
 import '../enemies/projectile.dart';
 
-class NeoVim extends SpriteComponent with CollisionCallbacks, Life {
+class NeoVim extends SpriteComponent with CollisionCallbacks, Defender, Life {
   NeoVim({required super.position, super.anchor = Anchor.center});
 
   @override

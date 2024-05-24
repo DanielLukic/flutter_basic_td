@@ -2,10 +2,12 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
+import '../adversaries/prime.dart';
+import '../components/common.dart';
 import 'auto_target_shooter.dart';
 import 'waypoints.dart';
 
-class Ghostling extends SpriteComponent {
+class Ghostling extends SpriteComponent with Attacker {
   Ghostling({
     required super.position,
     required super.sprite,
@@ -14,7 +16,10 @@ class Ghostling extends SpriteComponent {
 
   @override
   onLoad() async {
-    add(AutoTargetShooter(await ligmaBalls()));
+    add(AutoTargetShooter(
+      projectile: await ligmaBalls(),
+      isTarget: (it) => it is Prime || it is Defender,
+    ));
     add(CircleHitbox(collisionType: CollisionType.passive));
   }
 

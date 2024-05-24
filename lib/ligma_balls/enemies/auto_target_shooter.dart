@@ -3,17 +3,21 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../adversaries/prime.dart';
 import '../components/debug.dart';
-import '../defenders/neovim.dart';
 import 'projectile.dart';
 
 class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
   final SpriteAnimation _projectile;
+  final bool Function(Component) _isTarget;
   final double _reloadTime;
 
-  AutoTargetShooter(this._projectile, {double reloadTime = 1})
-      : _reloadTime = reloadTime {
+  AutoTargetShooter({
+    required SpriteAnimation projectile,
+    required bool Function(Component) isTarget,
+    double reloadTime = 1,
+  })  : _projectile = projectile,
+        _isTarget = isTarget,
+        _reloadTime = reloadTime {
     //
     add(CircleHitbox(
       radius: 32,
@@ -46,10 +50,6 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
       fireProjectile(_projectile, origin, target, 80);
       _reload = _reloadTime;
     }
-  }
-
-  bool _isTarget(PositionComponent component) {
-    return component is Prime || component is NeoVim;
   }
 
   @override
