@@ -16,11 +16,18 @@ class Ghostling extends SpriteComponent with Attacker {
 
   @override
   onLoad() async {
+    _projectileAnim = await ligmaBalls();
     add(AutoTargetShooter(
-      projectile: await ligmaBalls(),
+      fire: _fire,
       isTarget: (it) => it is Prime || it is Defender,
     ));
     add(CircleHitbox(collisionType: CollisionType.passive));
+  }
+
+  late SpriteAnimation _projectileAnim;
+
+  void _fire(PositionComponent origin, PositionComponent target) {
+    fireProjectile(_projectileAnim, origin, target, 80);
   }
 
   double _waytime = 0;

@@ -4,18 +4,17 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../components/debug.dart';
-import 'projectile.dart';
 
 class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
-  final SpriteAnimation _projectile;
+  final void Function(PositionComponent, PositionComponent) _fire;
   final bool Function(Component) _isTarget;
   final double _reloadTime;
 
   AutoTargetShooter({
-    required SpriteAnimation projectile,
+    required void Function(PositionComponent, PositionComponent) fire,
     required bool Function(Component) isTarget,
     double reloadTime = 1,
-  })  : _projectile = projectile,
+  })  : _fire = fire,
         _isTarget = isTarget,
         _reloadTime = reloadTime {
     //
@@ -47,7 +46,7 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
       _reload -= dt;
     } else {
       final origin = parent as PositionComponent;
-      fireProjectile(_projectile, origin, target, 80);
+      _fire(origin, target);
       _reload = _reloadTime;
     }
   }

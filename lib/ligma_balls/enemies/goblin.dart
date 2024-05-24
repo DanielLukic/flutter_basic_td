@@ -16,11 +16,18 @@ class Goblin extends SpriteComponent with Attacker {
 
   @override
   onLoad() async {
+    _projectileAnim = await twitchChat();
     add(AutoTargetShooter(
-      projectile: await twitchChat(),
+      fire: _fire,
       isTarget: (it) => it is Prime || it is Defender,
     ));
     add(CircleHitbox(collisionType: CollisionType.passive));
+  }
+
+  late SpriteAnimation _projectileAnim;
+
+  void _fire(PositionComponent origin, PositionComponent target) {
+    fireProjectile(_projectileAnim, origin, target, 40);
   }
 
   double _waytime = 0;
