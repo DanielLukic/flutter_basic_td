@@ -19,7 +19,7 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
   Future<void> onLoad() async {
     sprite = await game.loadSprite('prime.png');
     position = Vector2(object.x + 8, object.y - 8);
-    priority = 500;
+    priority = 50;
     add(CircleHitbox(isSolid: true, collisionType: CollisionType.active));
     addLifeIndicatorTo(this);
     maxHits = 10;
