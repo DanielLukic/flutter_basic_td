@@ -9,7 +9,6 @@ fireProjectile(
   PositionComponent origin,
   PositionComponent target,
   double speed,
-  IsTarget isTarget,
 ) {
   final dir = (target.position - origin.position).normalized();
   final projectile = prototype.clone();

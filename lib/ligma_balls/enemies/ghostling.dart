@@ -39,7 +39,7 @@ class Ghostling extends SpriteComponent
   late Projectile _bullet;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 80, _isTarget);
+    fireProjectile(_bullet, origin, target, 80);
   }
 
   bool _isTarget(PositionComponent it) => it is Prime || it is Defender;

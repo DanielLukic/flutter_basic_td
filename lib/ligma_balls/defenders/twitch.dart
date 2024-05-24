@@ -21,21 +21,21 @@ class Twitch extends SpriteComponent with CollisionCallbacks, Defender, Life {
     add(AutoTargetShooter(
       radius: 64,
       fire: _fire,
-      isTarget: (it) => it is Attacker,
+      isTarget: isAttacker,
     ));
     add(CircleHitbox(radius: size.x / 2));
     addLifeIndicatorTo(this);
 
     _bullet = await makeProjectilePrototype(
       ProjectileKind.twitchChat,
-      (it) => it is Attacker,
+      isAttacker,
     );
   }
 
   late Projectile _bullet;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 100, (it) => it is Attacker);
+    fireProjectile(_bullet, origin, target, 100);
   }
 
   double _pulseTime = 0;

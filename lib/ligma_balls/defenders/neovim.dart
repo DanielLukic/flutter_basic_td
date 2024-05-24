@@ -17,20 +17,22 @@ class NeoVim extends SpriteComponent with CollisionCallbacks, Defender, Life {
   @override
   Future<void> onLoad() async {
     sprite = await game.loadSprite('neovim.png');
+
     add(AutoTargetShooter(
       radius: 64,
       fire: _fire,
-      isTarget: (it) => it is Attacker,
+      isTarget: isAttacker,
     ));
     add(CircleHitbox(radius: size.x / 2));
     addLifeIndicatorTo(this);
-    _bullet = await makeProjectilePrototype(ProjectileKind.vim, (p0) => false);
+
+    _bullet = await makeProjectilePrototype(ProjectileKind.vim, isAttacker);
   }
 
   late Projectile _bullet;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 100, (it) => it is Attacker);
+    fireProjectile(_bullet, origin, target, 100);
   }
 
   double _pulseTime = 0;

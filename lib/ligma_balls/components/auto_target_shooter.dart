@@ -3,16 +3,17 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import 'common.dart';
 import 'debug.dart';
 
 class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
   final void Function(PositionComponent, PositionComponent) _fire;
-  final bool Function(Component) _isTarget;
+  final IsTarget _isTarget;
   final double _reloadTime;
 
   AutoTargetShooter({
     required void Function(PositionComponent, PositionComponent) fire,
-    required bool Function(Component) isTarget,
+    required IsTarget isTarget,
     double radius = 32,
     double reloadTime = 1,
   })  : _fire = fire,

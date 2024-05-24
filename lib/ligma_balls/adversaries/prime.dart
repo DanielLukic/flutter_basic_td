@@ -9,6 +9,8 @@ import '../components/life.dart';
 import '../components/projectile.dart';
 import '../components/smoke.dart';
 
+bool isDefender(PositionComponent it) => it is Defender || it is Prime;
+
 class Prime extends SpriteComponent with CollisionCallbacks, Life {
   //
   final TiledObject object;

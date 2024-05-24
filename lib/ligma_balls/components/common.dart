@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 
 typedef IsTarget = bool Function(PositionComponent);
 
+bool isAttacker(PositionComponent it) => it is Attacker;
+
 enum ProjectileKind {
   ligmaBalls,
   netflix,

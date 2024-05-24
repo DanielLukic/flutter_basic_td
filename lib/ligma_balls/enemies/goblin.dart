@@ -20,24 +20,21 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
 
   @override
   onLoad() async {
-    add(AutoTargetShooter(
-      fire: _fire,
-      isTarget: (it) => it is Prime || it is Defender,
-    ));
+    add(AutoTargetShooter(fire: _fire, isTarget: isDefender));
     add(CircleHitbox(collisionType: CollisionType.active));
     addLifeIndicatorTo(this);
     maxHits = 1;
 
     _bullet = await makeProjectilePrototype(
       ProjectileKind.twitchChat,
-      (it) => it is Prime || it is Defender,
+      isDefender,
     );
   }
 
   late Projectile _bullet;
 
   void _fire(PositionComponent origin, PositionComponent target) {
-    fireProjectile(_bullet, origin, target, 40, _isTarget);
+    fireProjectile(_bullet, origin, target, 40);
   }
 
   bool _isTarget(PositionComponent it) => it is Prime || it is Defender;
