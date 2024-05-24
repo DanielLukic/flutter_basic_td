@@ -1,13 +1,15 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:ligma_balls/ligma_balls/enemies/projectile.dart';
 
 import '../adversaries/prime.dart';
 import '../components/common.dart';
+import '../components/smoke.dart';
 import 'auto_target_shooter.dart';
 import 'waypoints.dart';
 
-class Ghostling extends SpriteComponent with Attacker {
+class Ghostling extends SpriteComponent with Attacker, CollisionCallbacks {
   Ghostling({
     required super.position,
     required super.sprite,
@@ -21,7 +23,7 @@ class Ghostling extends SpriteComponent with Attacker {
       fire: _fire,
       isTarget: (it) => it is Prime || it is Defender,
     ));
-    add(CircleHitbox(collisionType: CollisionType.passive));
+    add(CircleHitbox(collisionType: CollisionType.active));
   }
 
   late SpriteAnimation _projectileAnim;
@@ -38,5 +40,18 @@ class Ghostling extends SpriteComponent with Attacker {
   void update(double dt) {
     waypoints.setPositionAt(_waytime, 25, position);
     _waytime += dt;
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+    if (other is Projectile && other.isTarget(this)) {
+      other.active = false;
+      other.add(RemoveEffect(delay: 0.25));
+      smokeAround(other.position, Vector2.all(16));
+    }
   }
 }
