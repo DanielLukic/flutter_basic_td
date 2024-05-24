@@ -45,6 +45,7 @@ class GameLevel extends Component {
       layerPaintFactory: (it) => _layerPaint(),
     );
     scoreboard.position = Vector2(0, 240);
+    scoreboard.priority = 250;
 
     final accessible = map.getLayer('Accessible') as TileLayer;
     placement = Placement(map.tileMap, accessible);
