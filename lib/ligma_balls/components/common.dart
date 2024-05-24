@@ -36,7 +36,8 @@ final entityTileIndex = {
 final entityInfo = {
   'Goblin': 'A Twitch Goblin. Asks stupid questions in\nTwitch chat to get on'
       ' prime\'s nerves.',
-  'Ghostling': 'A Twitch Lurker.\nCareful: Throws Ligma Balls!',
+  'Ghostling': 'A Twitch Lurker. Careful: Throws Ligma Balls\nand knows VIM! '
+      'Interested in tech stuff!',
   'NeoVim': 'The NeoVIM editor. When attackers are hit,\n'
       'they will not be able to exit VIM!',
   'Twitch': 'Use Twitch chat to throw intelligent \n'
