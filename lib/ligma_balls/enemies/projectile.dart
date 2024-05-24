@@ -13,12 +13,30 @@ Future<SpriteAnimation> ligmaBalls() async => await game.loadSpriteAnimation(
       textureSize: Vector2.all(16),
     ));
 
+Future<SpriteAnimation> netflix() async => await game.loadSpriteAnimation(
+      'netflix.png',
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.05,
+        textureSize: Vector2.all(16),
+      ),
+    );
+
 Future<SpriteAnimation> twitchChat() async => await game.loadSpriteAnimation(
       'twitch_particle.png',
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 0.05,
         textureSize: Vector2.all(12),
+      ),
+    );
+
+Future<SpriteAnimation> vim() async => await game.loadSpriteAnimation(
+      'vim.png',
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.05,
+        textureSize: Vector2.all(16),
       ),
     );
 
