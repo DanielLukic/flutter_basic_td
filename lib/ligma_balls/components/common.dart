@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 
 import '../util/bitmap_font.dart';
 
+const double tileSize = 16;
+
 Paint pixelArtLayerPaint() => Paint()
   ..isAntiAlias = false
   ..filterQuality = FilterQuality.none;
