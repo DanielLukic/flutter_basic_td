@@ -55,9 +55,9 @@ class GameLevel extends Component {
 
     addAll([
       map,
+      placement,
       Scoreboard(),
       enemies,
-      placement,
       waypoints,
       Thor(thorEntity),
       Prime(primeEntity),
