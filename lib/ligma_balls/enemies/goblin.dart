@@ -28,16 +28,9 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
 
     add(AutoTargetShooter(projectile: projectile));
     add(CircleHitbox(collisionType: CollisionType.active));
+    add(FollowWaypoints());
 
     addLifeIndicatorTo(this, maxHits: 1);
-  }
-
-  double _waytime = 0;
-
-  @override
-  void update(double dt) {
-    waypoints.setPositionAt(_waytime, 35, position);
-    _waytime += dt;
   }
 
   @override

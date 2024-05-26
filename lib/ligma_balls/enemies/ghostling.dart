@@ -30,16 +30,9 @@ class Ghostling extends SpriteComponent
 
     add(AutoTargetShooter(projectile: projectile));
     add(CircleHitbox(collisionType: CollisionType.active));
+    add(FollowWaypoints());
 
     addLifeIndicatorTo(this, maxHits: 2);
-  }
-
-  double _waytime = 0;
-
-  @override
-  void update(double dt) {
-    waypoints.setPositionAt(_waytime, 25, position);
-    _waytime += dt;
   }
 
   @override

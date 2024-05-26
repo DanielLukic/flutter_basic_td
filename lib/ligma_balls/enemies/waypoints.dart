@@ -8,6 +8,24 @@ import '../components/common.dart';
 
 late Waypoints waypoints;
 
+class FollowWaypoints extends Component {
+  double _waytime = 0;
+
+  @override
+  onLoad() {
+    if (parent is! PositionComponent) {
+      throw StateError('parent has to be a PositionComponent');
+    }
+  }
+
+  @override
+  void update(double dt) {
+    final position = (parent as PositionComponent).position;
+    waypoints.setPositionAt(_waytime, 25, position);
+    _waytime += dt;
+  }
+}
+
 class Waypoints extends Component with HasVisibility {
   final ObjectGroup group;
 
