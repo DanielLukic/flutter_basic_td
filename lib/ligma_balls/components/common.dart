@@ -13,6 +13,7 @@ enum ProjectileKind {
   ligmaBalls,
   netflix,
   ocaml,
+  speech,
   twitchChat,
   vim,
 }

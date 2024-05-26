@@ -12,6 +12,7 @@ Future<Projectile> makeProjectilePrototype(
     ProjectileKind.ligmaBalls => _ligmaBalls(),
     ProjectileKind.netflix => _netflix(),
     ProjectileKind.ocaml => _ocaml(),
+    ProjectileKind.speech => _speech(),
     ProjectileKind.twitchChat => _twitchChat(),
     ProjectileKind.vim => _vim(),
   };
@@ -31,6 +32,9 @@ Future<SpriteAnimation> _netflix() async =>
 
 Future<SpriteAnimation> _ocaml() async =>
     _loadAnim(filename: 'ocaml.png', frames: 1);
+
+Future<SpriteAnimation> _speech() async =>
+    _loadAnim(filename: 'speech.png', frames: 1);
 
 Future<SpriteAnimation> _twitchChat() async =>
     _loadAnim(filename: 'twitch_particle.png', frames: 1, size: 12);
