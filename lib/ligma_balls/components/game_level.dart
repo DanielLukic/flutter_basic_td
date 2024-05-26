@@ -14,6 +14,7 @@ import '../util/extensions.dart';
 import '../util/tiled_map_overlay.dart';
 import 'common.dart';
 import 'level_dialog.dart';
+import 'scoreboard.dart';
 
 late GameLevel level;
 
@@ -42,15 +43,6 @@ class GameLevel extends Component {
     map.setLayerHidden('Trees');
     map.setLayerHidden('Waypoints');
 
-    final scoreboard = await TiledComponent.load(
-      'scoreboard.tmx',
-      Vector2(16.0, 16.0),
-      useAtlas: !kIsWeb,
-      layerPaintFactory: (it) => pixelArtLayerPaint(),
-    );
-    scoreboard.position = Vector2(0, 240);
-    scoreboard.priority = 250;
-
     placement = Placement(map.tileMap);
 
     trees = map.getLayer('Trees') as TileLayer;
@@ -66,7 +58,7 @@ class GameLevel extends Component {
 
     addAll([
       map,
-      scoreboard,
+      Scoreboard(),
       enemies,
       placement,
       waypoints,
