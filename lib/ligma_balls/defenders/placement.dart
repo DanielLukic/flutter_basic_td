@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import '../components/common.dart';
+import '../components/game_level.dart';
 import '../util/extensions.dart';
 import '../util/tiled_map_overlay.dart';
 
@@ -46,5 +47,39 @@ class Placement extends Component with HasVisibility {
     _map.refresh(accessible);
 
     add(TiledMapOverlay(_map, accessible));
+
+    indicator = map.tileSprite(268);
+  }
+
+  late Sprite indicator;
+
+  var indicators = <SpriteComponent>[];
+
+  tryPlace(Vector2 center, {double tilesWH = 2}) {
+    final size = tilesWH * tileSize;
+    final tl = center - Vector2.all(size / 4);
+    tl.x = tl.x ~/ tileSize * tileSize;
+    tl.y = tl.y ~/ tileSize * tileSize;
+    if (indicators.isEmpty) {
+      indicators = List.generate(4, (_) => SpriteComponent(sprite: indicator));
+      for (final it in indicators) {
+        level.add(it);
+      }
+    }
+    indicators[0].position = tl;
+    indicators[1].position = tl + Vector2(tileSize, 0);
+    indicators[2].position = tl + Vector2(0, tileSize);
+    indicators[3].position = tl + Vector2(tileSize, tileSize);
+  }
+
+  executePlacement(PositionComponent Function(Vector2) create) {
+    if (indicators.isEmpty) return;
+
+    level.add(create(indicators[3].position));
+
+    for (final it in indicators) {
+      level.remove(it);
+    }
+    indicators = [];
   }
 }
