@@ -1,3 +1,4 @@
+import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +25,30 @@ class GameLevel extends Component {
 
   GameLevel(this.id) : basename = 'level$id';
 
-  int remainingPoints = 0;
+  double displayPoints = 0;
+
+  double remainingPoints = 0;
+
+  void addPoints(int count) {
+    remainingPoints += count;
+  }
+
+  void subPoints(int count) {
+    remainingPoints -= count;
+    if (remainingPoints < 0) remainingPoints = 0;
+  }
+
+  final double minStep = 5;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (remainingPoints != displayPoints) {
+      var delta = (remainingPoints - displayPoints) * dt;
+      if (delta.abs() < minStep) delta = delta < 0 ? -minStep : minStep;
+      displayPoints += delta;
+    }
+  }
 
   @override
   onLoad() async {
@@ -37,7 +61,8 @@ class GameLevel extends Component {
       layerPaintFactory: (it) => pixelArtLayerPaint(),
     );
 
-    remainingPoints = map.intProperty('PlacementPoints');
+    displayPoints = map.intProperty('PlacementPoints').toDouble();
+    remainingPoints = displayPoints;
 
     map.setLayerHidden('Accessible');
     map.setLayerHidden('Entities');

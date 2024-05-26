@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
@@ -54,7 +55,7 @@ class PlacementPoints extends Component {
     super.render(canvas);
     fancyFont.paint = Paint();
     fancyFont.scale = 1;
-    fancyFont.drawText(canvas, 80, 16, '\$${level.remainingPoints}');
+    fancyFont.drawText(canvas, 80, 16, '\$${level.displayPoints.toInt()}');
     fancyFont.scale = 0.5;
     fancyFont.drawText(canvas, 80, 29, 'Remaining\nFor Placement');
   }
@@ -63,10 +64,12 @@ class PlacementPoints extends Component {
 class DefenderIcon extends PositionComponent with DragCallbacks {
   final TiledObject object;
 
+  late SpriteComponent image;
+
   DefenderIcon(this.object, Vector2 position) {
     final idx = entityTileIndex[object.name]!;
     final sprite = map.tileSprite(idx);
-    add(SpriteComponent(sprite: sprite));
+    add(image = SpriteComponent(sprite: sprite));
     this.position = position;
     size = Vector2.all(16);
 
@@ -79,6 +82,20 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   }
 
   late int price;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (level.remainingPoints >= price) {
+      image.opacity = 1;
+      available = true;
+    } else {
+      image.opacity = 0.5;
+      available = false;
+    }
+  }
+
+  bool available = true;
 
   @override
   void render(Canvas canvas) {
@@ -104,7 +121,7 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   bool containsLocalPoint(Vector2 point) {
     if (point.x < 0 || point.y < 0) return false;
     if (point.x >= size.x || point.y >= size.y) return false;
-    return true;
+    return available;
   }
 
   SpriteComponent? dragged;
@@ -112,6 +129,7 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   @override
   void onDragStart(DragStartEvent event) {
     super.onDragStart(event);
+    if (!available) return;
     if (dragged != null) world.level!.remove(dragged!);
     dragged = SpriteComponent(sprite: prototype, anchor: Anchor.center);
     dragged!.priority = 800;
@@ -134,6 +152,7 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     if (dragged != null) world.level!.remove(dragged!);
     dragged = null;
     placement.executePlacement((it) {
+      level.subPoints(price);
       return switch (object.name) {
         'NeoVim' => NeoVim(position: it),
         'Teej' => Teej(position: it),
