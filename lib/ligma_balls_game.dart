@@ -11,10 +11,6 @@ import 'ligma_balls/components/ligma_world.dart';
 import 'ligma_balls/components/performance.dart';
 import 'ligma_balls/util/bitmap_font.dart';
 
-late BitmapFont fancyFont;
-late BitmapFont menuFont;
-late BitmapFont textFont;
-
 class LigmaBallsGame extends FlameGame<LigmaWorld>
     with
         HasCollisionDetection,

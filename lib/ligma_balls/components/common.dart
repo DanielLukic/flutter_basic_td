@@ -6,6 +6,8 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 
+import '../util/bitmap_font.dart';
+
 Paint pixelArtLayerPaint() => Paint()
   ..isAntiAlias = false
   ..filterQuality = FilterQuality.none;
@@ -36,6 +38,10 @@ void repeat(int count, void Function(int) func) {
 
 bool debug = false;
 bool dev = kDebugMode;
+
+late BitmapFont fancyFont;
+late BitmapFont menuFont;
+late BitmapFont textFont;
 
 late Game game;
 late Images images;
