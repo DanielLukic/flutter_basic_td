@@ -1,5 +1,7 @@
+import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/material.dart';
 
 import '../components/common.dart';
 import '../components/game_level.dart';
@@ -16,6 +18,8 @@ class Placement extends Component with HasVisibility {
   @override
   bool get isVisible => debug;
 
+  late int levelWidth;
+  late int levelHeight;
   late List<bool> available;
 
   @override
@@ -24,6 +28,9 @@ class Placement extends Component with HasVisibility {
     final rocks = _map.requireTileLayer('Rocks');
     final trees = _map.requireTileLayer('Trees');
     final attr = _map.requireTileLayer('Attribution');
+
+    levelWidth = bgap.width;
+    levelHeight = bgap.height;
 
     final accessible = _map.requireTileLayer('Accessible');
     final data = List.generate(bgap.width * bgap.height, (it) {
@@ -36,7 +43,8 @@ class Placement extends Component with HasVisibility {
       if (attr.data![it] != 0) available = false;
       return available ? 269 : 0;
     });
-    available = data.map((it) => it == 0).toList();
+
+    available = data.map((it) => it != 0).toList();
 
     accessible.data = data;
     accessible.tileData = Gid.generate(
@@ -70,12 +78,41 @@ class Placement extends Component with HasVisibility {
     indicators[1].position = tl + Vector2(tileSize, 0);
     indicators[2].position = tl + Vector2(0, tileSize);
     indicators[3].position = tl + Vector2(tileSize, tileSize);
+
+    validPlacement = true;
+    for (final it in indicators) {
+      final x = it.position.x ~/ tileSize;
+      final y = it.position.y ~/ tileSize;
+      if (x < 0 || y < 0 || x >= levelWidth || y >= levelHeight) {
+        validPlacement = false;
+      } else {
+        final index = x + y * levelWidth;
+        if (available[index]) {
+          it.tint(Colors.white);
+        } else {
+          it.tint(Colors.red);
+          validPlacement = false;
+        }
+      }
+    }
   }
+
+  bool validPlacement = false;
 
   executePlacement(PositionComponent Function(Vector2) create) {
     if (indicators.isEmpty) return;
 
-    level.add(create(indicators[3].position));
+    if (validPlacement) {
+      level.add(create(indicators[3].position));
+      for (final it in indicators) {
+        final x = it.position.x ~/ tileSize;
+        final y = it.position.y ~/ tileSize;
+        available[x + y * levelWidth] = false;
+      }
+      // TODO collect pills
+    } else {
+      logInfo('invalid placement');
+    }
 
     for (final it in indicators) {
       level.remove(it);
