@@ -1,12 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
-import 'package:ligma_balls/ligma_balls/defenders/teej.dart';
 
 import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
 import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
+import '../defenders/teej.dart';
 import '../defenders/twitch.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
