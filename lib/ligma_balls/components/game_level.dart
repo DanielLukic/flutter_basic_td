@@ -15,6 +15,11 @@ import '../util/tiled_map_overlay.dart';
 import 'common.dart';
 import 'level_dialog.dart';
 
+late GameLevel level;
+
+late TiledComponent map;
+late TileLayer trees;
+
 class GameLevel extends Component {
   final int id;
   final String basename;
@@ -22,8 +27,10 @@ class GameLevel extends Component {
   GameLevel(this.id) : basename = 'level$id';
 
   @override
-  Future<void> onLoad() async {
-    final map = await TiledComponent.load(
+  onLoad() async {
+    level = this;
+
+    map = await TiledComponent.load(
       '$basename.tmx',
       Vector2(16.0, 16.0),
       useAtlas: !kIsWeb,
@@ -46,7 +53,7 @@ class GameLevel extends Component {
 
     placement = Placement(map.tileMap);
 
-    final trees = map.getLayer('Trees') as TileLayer;
+    trees = map.getLayer('Trees') as TileLayer;
 
     final wpLayer = map.getLayer('Waypoints') as ObjectGroup;
     waypoints = Waypoints(wpLayer);
