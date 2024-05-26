@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ligma_balls/ligma_balls/defenders/teej.dart';
 
 import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
@@ -70,10 +71,11 @@ class GameLevel extends Component {
       waypoints,
       Thor(thorEntity),
       Prime(primeEntity),
-      NeoVim(position: Vector2(64, 32)),
+      NeoVim(position: Vector2(96, 32)),
       NeoVim(position: Vector2(160, 32)),
-      Twitch(position: Vector2(144, 80)),
-      Twitch(position: Vector2(48, 160)),
+      Twitch(position: Vector2(160, 80)),
+      Twitch(position: Vector2(96, 80)),
+      Teej(position: Vector2(128, 80)),
       TiledMapOverlay(map.tileMap, trees),
       if (showLevelDialog)
         LevelDialog('Level $id', map, ok: (it) {

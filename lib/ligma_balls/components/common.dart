@@ -45,6 +45,7 @@ final entityTileIndex = {
   'Crab': 398,
   'Knight': 364,
   'NeoVim': 210,
+  'Teej': 243,
   'Twitch': 212,
 };
 
@@ -63,6 +64,8 @@ final entityInfo = {
   //
   'NeoVim': 'The NeoVIM editor. When attackers are hit,\n'
       'they will not be able to exit VIM!',
+  'Teej': 'Teej talks about Ocaml and Elixir, making\n'
+      'attackers very sleepy!',
   'Twitch': 'Use Twitch chat to throw intelligent \n'
       'opinions at attackers',
 };
