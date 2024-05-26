@@ -17,7 +17,7 @@ class Thor extends SpriteComponent with CollisionCallbacks {
   Future<void> onLoad() async {
     sprite = await game.loadSprite('thor.png');
     position = Vector2(object.x + 8, object.y - 8);
-    priority = 50;
+    priority = 500;
     add(CircleHitbox(collisionType: CollisionType.active));
   }
 
