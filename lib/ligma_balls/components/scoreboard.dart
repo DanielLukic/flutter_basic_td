@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -24,12 +26,37 @@ class Scoreboard extends PositionComponent {
     position = Vector2(0, 240);
     priority = 250;
 
-    final pos = Vector2(160, 16);
+    final pos = Vector2(180, 16);
     final defenders = world.level!.defenders;
     for (final it in defenders) {
       add(DefenderIcon(it, pos));
-      pos.x += 24;
+      pos.x += 32;
     }
+
+    add(LevelInfo());
+    add(PlacementPoints());
+  }
+}
+
+class LevelInfo extends Component {
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    fancyFont.paint = Paint();
+    fancyFont.scale = 1;
+    fancyFont.drawText(canvas, 120, 56, 'Level ${level.id}');
+  }
+}
+
+class PlacementPoints extends Component {
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    fancyFont.paint = Paint();
+    fancyFont.scale = 1;
+    fancyFont.drawText(canvas, 80, 16, '\$${level.remainingPoints}');
+    fancyFont.scale = 0.5;
+    fancyFont.drawText(canvas, 80, 29, 'Remaining\nFor Placement');
   }
 }
 
@@ -42,6 +69,22 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     add(SpriteComponent(sprite: sprite));
     this.position = position;
     size = Vector2.all(16);
+
+    price = switch (object.name) {
+      'NeoVim' => 80,
+      'Teej' => 200,
+      'Twitch' => 90,
+      _ => throw ArgumentError('unknown defender: ${object.name}'),
+    };
+  }
+
+  late int price;
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    fancyFont.scale = 0.5;
+    fancyFont.drawText(canvas, 0, 20, '\$$price');
   }
 
   @override
@@ -92,9 +135,9 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     dragged = null;
     placement.executePlacement((it) {
       return switch (object.name) {
-        "NeoVim" => NeoVim(position: it),
-        "Teej" => Teej(position: it),
-        "Twitch" => Twitch(position: it),
+        'NeoVim' => NeoVim(position: it),
+        'Teej' => Teej(position: it),
+        'Twitch' => Twitch(position: it),
         _ => throw ArgumentError('defender unknown: ${object.name}'),
       };
     });
