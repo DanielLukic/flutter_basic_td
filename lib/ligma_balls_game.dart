@@ -92,6 +92,20 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
         debug = !debug;
         return KeyEventResult.handled;
       }
+      if (event.character == 'L') {
+        if (level > 1) level--;
+        world.loadLevel(level);
+        return KeyEventResult.handled;
+      }
+      if (event.character == 'l') {
+        assets.readBinaryFile('tiles/level${level + 1}.tmx').then((_) {
+          level++;
+          world.loadLevel(level);
+        }, onError: (_) {
+          world.loadLevel(level);
+        });
+        return KeyEventResult.handled;
+      }
       if (event.character == 'r') {
         world.loadLevel(level);
         return KeyEventResult.handled;
