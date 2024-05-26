@@ -1,3 +1,4 @@
+import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -33,7 +34,10 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
   ) {
     super.onCollisionStart(intersectionPoints, other);
     if (other is AutoTargetShooter) return;
-    onHit(this);
+    if (other case Life it) {
+      onHit(this, count: it.remainingHits);
+      logInfo('prime remaining hits: $remainingHits');
+    }
     if (other is Projectile) {
       other.add(RemoveEffect(delay: 0.1));
     } else {
