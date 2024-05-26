@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import '../components/common.dart';
+
 class NinePatchImage {
   final Image image;
   final int cornerSize;
@@ -26,9 +28,7 @@ class NinePatchImage {
 
   Rect get _bottomRight => Rect.fromLTWH(_size * 2, _size * 2, _size, _size);
 
-  final paint = Paint()
-    ..isAntiAlias = false
-    ..filterQuality = FilterQuality.none;
+  final paint = pixelArtLayerPaint();
 
   draw(Canvas canvas, double left, double top, double width, double height) {
     if (width ~/ cornerSize * cornerSize != width) {

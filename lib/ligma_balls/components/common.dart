@@ -1,9 +1,14 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
+
+Paint pixelArtLayerPaint() => Paint()
+  ..isAntiAlias = false
+  ..filterQuality = FilterQuality.none;
 
 typedef IsTarget = bool Function(PositionComponent);
 

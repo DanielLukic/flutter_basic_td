@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +12,7 @@ import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
 import '../util/extensions.dart';
 import '../util/tiled_map_overlay.dart';
+import 'common.dart';
 import 'level_dialog.dart';
 
 class GameLevel extends Component {
@@ -22,17 +21,13 @@ class GameLevel extends Component {
 
   GameLevel(this.id) : basename = 'level$id';
 
-  Paint _layerPaint() => Paint()
-    ..isAntiAlias = false
-    ..filterQuality = FilterQuality.none;
-
   @override
   Future<void> onLoad() async {
     final map = await TiledComponent.load(
       '$basename.tmx',
       Vector2(16.0, 16.0),
       useAtlas: !kIsWeb,
-      layerPaintFactory: (it) => _layerPaint(),
+      layerPaintFactory: (it) => pixelArtLayerPaint(),
     );
 
     map.setLayerHidden('Accessible');
@@ -44,7 +39,7 @@ class GameLevel extends Component {
       'scoreboard.tmx',
       Vector2(16.0, 16.0),
       useAtlas: !kIsWeb,
-      layerPaintFactory: (it) => _layerPaint(),
+      layerPaintFactory: (it) => pixelArtLayerPaint(),
     );
     scoreboard.position = Vector2(0, 240);
     scoreboard.priority = 250;
