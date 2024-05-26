@@ -26,7 +26,8 @@ class Twitch extends SpriteComponent with CollisionCallbacks, Defender, Life {
 
     add(AutoTargetShooter(radius: 64, projectile: projectile));
     add(CircleHitbox(radius: size.x / 2));
-    addLifeIndicatorTo(this);
+
+    addLifeIndicatorTo(this, maxHits: 5);
   }
 
   double _pulseTime = 0;

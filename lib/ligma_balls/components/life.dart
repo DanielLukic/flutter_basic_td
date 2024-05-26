@@ -11,15 +11,16 @@ mixin Life {
 
   int _hits = 0;
 
-  int maxHits = 5;
+  late int maxHits;
 
-  addLifeIndicatorTo(PositionComponent parent) {
+  addLifeIndicatorTo(PositionComponent parent, {required int maxHits}) {
     parent.add(_life = CircleComponent(
       radius: 0,
       position: parent.size / 2,
       anchor: Anchor.center,
       paint: Paint()..color = const Color(0x80FF0000),
     ));
+    this.maxHits = maxHits;
   }
 
   onHit(PositionComponent it) {

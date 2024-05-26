@@ -31,8 +31,7 @@ class Ghostling extends SpriteComponent
     add(AutoTargetShooter(projectile: projectile));
     add(CircleHitbox(collisionType: CollisionType.active));
 
-    addLifeIndicatorTo(this);
-    maxHits = 2;
+    addLifeIndicatorTo(this, maxHits: 2);
   }
 
   double _waytime = 0;
