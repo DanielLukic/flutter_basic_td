@@ -4,10 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
-import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
-import '../defenders/teej.dart';
-import '../defenders/twitch.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
 import '../util/extensions.dart';
@@ -64,11 +61,6 @@ class GameLevel extends Component {
       waypoints,
       Thor(thorEntity),
       Prime(primeEntity),
-      NeoVim(position: Vector2(96, 32)),
-      NeoVim(position: Vector2(160, 32)),
-      Twitch(position: Vector2(160, 80)),
-      Twitch(position: Vector2(96, 80)),
-      Teej(position: Vector2(128, 80)),
       TiledMapOverlay(map.tileMap, trees),
       if (showLevelDialog)
         LevelDialog('Level $id', map, ok: (it) {
