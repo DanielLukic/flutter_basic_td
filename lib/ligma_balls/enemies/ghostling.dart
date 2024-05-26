@@ -7,10 +7,17 @@ import '../components/common.dart';
 import '../components/life.dart';
 import '../components/projectiles.dart';
 import '../components/taking_hits.dart';
+import 'can_be_slowed_down.dart';
 import 'waypoints.dart';
 
 class Ghostling extends SpriteComponent
-    with Attacker, CollisionCallbacks, Life, TakingHits {
+    with
+        HasTimeScale,
+        Attacker,
+        CanBeSlowedDown,
+        CollisionCallbacks,
+        Life,
+        TakingHits {
   //
   Ghostling({
     required super.position,

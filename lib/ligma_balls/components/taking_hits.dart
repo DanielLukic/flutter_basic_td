@@ -2,6 +2,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 
+import '../enemies/can_be_slowed_down.dart';
 import 'common.dart';
 import 'life.dart';
 import 'projectile.dart';
@@ -29,7 +30,13 @@ mixin TakingHits on CollisionCallbacks, Life {
       other.active = false;
       other.add(RemoveEffect(delay: 0.1));
       smokeAround(other.position, _self.size / 2);
-      if (_doesCauseHit(other.kind)) onHit(_self);
+      if (other.kind == ProjectileKind.speech) {
+        if (_self case CanBeSlowedDown it) {
+          it.slowDown();
+        }
+      } else if (_doesCauseHit(other.kind)) {
+        onHit(_self);
+      }
     }
   }
 

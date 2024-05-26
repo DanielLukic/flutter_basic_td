@@ -4,10 +4,17 @@ import 'package:flame/components.dart';
 import '../components/common.dart';
 import '../components/life.dart';
 import '../components/taking_hits.dart';
+import 'can_be_slowed_down.dart';
 import 'waypoints.dart';
 
 class Subscriber extends SpriteComponent
-    with Attacker, CollisionCallbacks, Life, TakingHits {
+    with
+        HasTimeScale,
+        Attacker,
+        CanBeSlowedDown,
+        CollisionCallbacks,
+        Life,
+        TakingHits {
   //
   Subscriber({
     required super.position,
