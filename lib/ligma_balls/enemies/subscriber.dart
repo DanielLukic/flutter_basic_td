@@ -3,7 +3,7 @@ import 'package:flame/components.dart';
 
 import '../components/common.dart';
 import '../components/life.dart';
-import 'taking_hits.dart';
+import '../components/taking_hits.dart';
 import 'waypoints.dart';
 
 class Subscriber extends SpriteComponent

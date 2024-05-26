@@ -1,17 +1,17 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
 
 import '../adversaries/prime.dart';
 import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
 import '../components/life.dart';
-import '../components/projectile.dart';
 import '../components/projectiles.dart';
-import '../components/smoke.dart';
+import '../components/taking_hits.dart';
 import 'waypoints.dart';
 
-class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
+class Goblin extends SpriteComponent
+    with Attacker, CollisionCallbacks, Life, TakingHits {
+  //
   Goblin({
     required super.position,
     required super.sprite,
@@ -31,19 +31,6 @@ class Goblin extends SpriteComponent with Attacker, CollisionCallbacks, Life {
     add(FollowWaypoints());
 
     addLifeIndicatorTo(this, maxHits: 1);
-  }
-
-  @override
-  void onCollisionStart(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
-    super.onCollisionStart(intersectionPoints, other);
-    if (other is Projectile && other.isTarget(this)) {
-      onHit(this);
-      other.active = false;
-      other.add(RemoveEffect(delay: 0.25));
-      smokeAround(other.position, Vector2.all(16));
-    }
+    initTakingHits(this);
   }
 }

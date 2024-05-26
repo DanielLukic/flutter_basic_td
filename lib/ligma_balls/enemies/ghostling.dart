@@ -1,18 +1,16 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
 
 import '../adversaries/prime.dart';
 import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
 import '../components/life.dart';
-import '../components/projectile.dart';
 import '../components/projectiles.dart';
-import '../components/smoke.dart';
+import '../components/taking_hits.dart';
 import 'waypoints.dart';
 
 class Ghostling extends SpriteComponent
-    with Attacker, CollisionCallbacks, Life {
+    with Attacker, CollisionCallbacks, Life, TakingHits {
   //
   Ghostling({
     required super.position,
@@ -33,19 +31,6 @@ class Ghostling extends SpriteComponent
     add(FollowWaypoints());
 
     addLifeIndicatorTo(this, maxHits: 2);
-  }
-
-  @override
-  void onCollisionStart(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
-    super.onCollisionStart(intersectionPoints, other);
-    if (other is Projectile && other.isTarget(this)) {
-      other.active = false;
-      other.add(RemoveEffect(delay: 0.25));
-      smokeAround(other.position, Vector2.all(16));
-      if (other.kind != ProjectileKind.vim) onHit(this);
-    }
+    initTakingHits(this, whereKind: (it) => it != ProjectileKind.vim);
   }
 }
