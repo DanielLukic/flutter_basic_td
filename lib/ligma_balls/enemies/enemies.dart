@@ -70,13 +70,18 @@ class Enemies extends Component with HasVisibility {
 
     _lifetime += dt;
     super.update(dt);
-    final spawner = nursery.firstOrNull;
-    if (spawner == null) return;
-    final spawn = spawner.spawnWhen(_lifetime);
-    if (spawn) {
-      final enemy = spawner.spawn(map);
-      if (enemy != null) parent?.add(enemy);
+
+    final depleted = <EnemySpawner>[];
+    for (final spawner in nursery) {
+      final spawn = spawner.spawnWhen(_lifetime);
+      if (spawn) {
+        final enemy = spawner.spawn(map);
+        if (enemy != null) parent?.add(enemy);
+      }
+      if (spawner.isDepleted) depleted.add(spawner);
     }
-    if (spawner.isDepleted) nursery.removeAt(0);
+    for (final it in depleted) {
+      nursery.remove(it);
+    }
   }
 }
