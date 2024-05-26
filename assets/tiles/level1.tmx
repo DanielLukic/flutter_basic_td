@@ -6,6 +6,7 @@
 He sends his Twitch goblins to destroy it!
 
 You must protect Prime's Moustache (TM)!</property>
+  <property name="PlacementPoints" type="int" value="400"/>
  </properties>
  <tileset firstgid="1" source="tiles.tsx"/>
  <layer id="1" name="BackgroundAndPath" width="20" height="15">
