@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -7,6 +5,7 @@ import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
 import '../components/life.dart';
 import '../components/projectiles.dart';
+import '../components/pulsing.dart';
 import '../components/taking_hits.dart';
 
 class Twitch extends SpriteComponent
@@ -24,20 +23,11 @@ class Twitch extends SpriteComponent
       60,
     );
 
-    add(AutoTargetShooter(radius: 64, projectile: projectile));
+    add(AutoTargetShooter(radius: 64, projectile: projectile, reloadTime: 2));
     add(CircleHitbox(radius: size.x / 2));
+    add(Pulsing());
 
     addLifeIndicatorTo(this, maxHits: 5);
     initTakingHits(this);
-  }
-
-  double _pulseTime = 0;
-
-  @override
-  void update(double dt) {
-    final pulse = 1 + sin(_pulseTime * pi * 2) * 0.1;
-    scale.x = pulse;
-    scale.y = pulse;
-    _pulseTime += dt;
   }
 }
