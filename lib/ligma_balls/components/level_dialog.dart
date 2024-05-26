@@ -10,6 +10,7 @@ import '../../ligma_balls_game.dart';
 import '../util/extensions.dart';
 import '../util/nine_patch_image.dart';
 import 'common.dart';
+import 'game_level.dart';
 
 class LevelDialog extends Component with KeyboardHandler, TapCallbacks {
   final String title;
@@ -39,9 +40,8 @@ class LevelDialog extends Component with KeyboardHandler, TapCallbacks {
     );
     textFont.scale = 0.5;
 
-    final entities = map.tileMap.getLayer('Entities') as ObjectGroup;
-    attackers = entities.objects.where((it) => it.class_ == 'Attacker');
-    defenders = entities.objects.where((it) => it.class_ == 'Defender');
+    attackers = level.attackers;
+    defenders = level.defenders;
   }
 
   @override

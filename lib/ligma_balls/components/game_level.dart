@@ -87,9 +87,19 @@ class GameLevel extends Component {
     enemies.active = !showLevelDialog;
   }
 
-  bool showLevelDialog = true;
+  bool showLevelDialog = false;
 
   startLevel() {
     enemies.active = true;
+  }
+
+  Iterable<TiledObject> get attackers {
+    final entities = map.tileMap.getLayer('Entities') as ObjectGroup;
+    return entities.objects.where((it) => it.class_ == 'Attacker');
+  }
+
+  Iterable<TiledObject> get defenders {
+    final entities = map.tileMap.getLayer('Entities') as ObjectGroup;
+    return entities.objects.where((it) => it.class_ == 'Defender');
   }
 }
