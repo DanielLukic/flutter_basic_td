@@ -30,6 +30,10 @@ extension RenderableTiledMapExtensions on RenderableTiledMap {
     setLayerVisibility(index, visible: false);
   }
 
+  int? intOptProp(String name) => map.intOptProp(name);
+
+  int intProperty(String name) => map.intProperty(name);
+
   String stringProperty(String name) => map.stringProperty(name);
 }
 
@@ -40,6 +44,10 @@ extension TiledComponentExtensions on TiledComponent {
     final it = tileMap.getLayer(name);
     if (it != null) tileMap.setLayerHidden(it);
   }
+
+  int? intOptProp(String name) => tileMap.intOptProp(name);
+
+  int intProperty(String name) => tileMap.intProperty(name);
 
   String stringProperty(String name) => tileMap.stringProperty(name);
 
@@ -55,6 +63,18 @@ extension TiledComponentExtensions on TiledComponent {
 }
 
 extension TiledMapExtensions on TiledMap {
+  int? intOptProp(String name) {
+    for (final it in properties) {
+      if (it.name == name && it.type == PropertyType.int) {
+        return it.value as int;
+      }
+    }
+    return null;
+  }
+
+  int intProperty(String name) =>
+      properties.firstWhere((it) => it.name == name).value as int;
+
   String stringProperty(String name) =>
       properties.firstWhere((it) => it.name == name).value.toString();
 }
