@@ -49,8 +49,7 @@ class GameLevel extends Component {
     scoreboard.position = Vector2(0, 240);
     scoreboard.priority = 250;
 
-    final accessible = map.getLayer('Accessible') as TileLayer;
-    placement = Placement(map.tileMap, accessible);
+    placement = Placement(map.tileMap);
 
     final trees = map.getLayer('Trees') as TileLayer;
 

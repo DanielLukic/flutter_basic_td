@@ -9,6 +9,17 @@ extension ObjectGroupExtensions on ObjectGroup {
 }
 
 extension RenderableTiledMapExtensions on RenderableTiledMap {
+  TileLayer requireTileLayer(String name) {
+    final it = getLayer(name);
+    if (it == null) throw ArgumentError('Required layer $name not found');
+    return it as TileLayer;
+  }
+
+  void refresh(Layer layer) {
+    final it = renderableLayers.firstWhere((it) => it.layer.id == layer.id);
+    it.refreshCache();
+  }
+
   void renderSingleLayer(Canvas canvas, Layer layer) {
     final it = renderableLayers.firstWhere((it) => it.layer.id == layer.id);
     it.render(canvas, camera);
