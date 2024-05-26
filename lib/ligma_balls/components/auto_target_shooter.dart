@@ -34,11 +34,16 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
     ));
   }
 
-  PositionComponent? _activeTarget;
+  final _targets = <PositionComponent>[];
+
+  PositionComponent? get _activeTarget => _targets.lastOrNull;
   double _reload = 0;
 
   @override
   void update(double dt) {
+    final dead = _targets.where((it) => it.parent == null);
+    _targets.removeWhere((it) => dead.contains(it));
+
     final target = _activeTarget;
     if (target == null) {
       return;
@@ -57,14 +62,14 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    if (_projectile.isTarget(other)) _activeTarget = other;
+    if (_projectile.isTarget(other)) _targets.add(other);
   }
 
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
     if (_projectile.isTarget(other) && _activeTarget == other) {
-      _activeTarget = null;
+      _targets.remove(other);
     }
   }
 }
