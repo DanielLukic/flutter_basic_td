@@ -24,6 +24,8 @@ class GameLevel extends Component {
 
   GameLevel(this.id) : basename = 'level$id';
 
+  int remainingPoints = 0;
+
   @override
   onLoad() async {
     level = this;
@@ -34,6 +36,8 @@ class GameLevel extends Component {
       useAtlas: !kIsWeb,
       layerPaintFactory: (it) => pixelArtLayerPaint(),
     );
+
+    remainingPoints = map.intProperty('PlacementPoints');
 
     map.setLayerHidden('Accessible');
     map.setLayerHidden('Entities');
