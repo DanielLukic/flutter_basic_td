@@ -38,6 +38,7 @@ final random = Random();
 final entityTileIndex = {
   'Goblin': 397,
   'Ghostling': 429,
+  'Subscriber': 400,
   'Spider': 430,
   'Crab': 398,
   'Knight': 364,
@@ -46,10 +47,18 @@ final entityTileIndex = {
 };
 
 final entityInfo = {
+  //
+  // Attackers
+  //
   'Goblin': 'A Twitch Goblin. Asks stupid questions in\nTwitch chat to get on'
       ' prime\'s nerves.',
   'Ghostling': 'A Twitch Lurker. Careful: Throws Ligma Balls\nand knows VIM! '
       'Interested in tech stuff!',
+  'Subscriber': 'Thor\'s twitch subscribers are strong.\n'
+      'Slow them down to hit them enough!',
+  //
+  // Defenders
+  //
   'NeoVim': 'The NeoVIM editor. When attackers are hit,\n'
       'they will not be able to exit VIM!',
   'Twitch': 'Use Twitch chat to throw intelligent \n'

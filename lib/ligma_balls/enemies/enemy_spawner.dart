@@ -4,6 +4,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 
 import '../components/common.dart';
 import '../util/extensions.dart';
+import 'subscriber.dart';
 import 'ghostling.dart';
 import 'goblin.dart';
 
@@ -43,6 +44,7 @@ class EnemySpawner {
     final it = switch (_object.name) {
       'Goblin' => _makeGoblin(pos, map),
       'Ghostling' => _makeGhostling(pos, map),
+      'Subscriber' => _makeSubscriber(pos, map),
       _ => _makeGoblin(pos, map),
     };
     it.priority = _nextPriority--;
@@ -57,5 +59,10 @@ class EnemySpawner {
   Ghostling _makeGhostling(Vector2 position, TiledComponent map) {
     final sprite = map.tileSprite(entityTileIndex['Ghostling']!);
     return Ghostling(position: position, sprite: sprite);
+  }
+
+  Subscriber _makeSubscriber(Vector2 position, TiledComponent map) {
+    final sprite = map.tileSprite(entityTileIndex['Subscriber']!);
+    return Subscriber(position: position, sprite: sprite);
   }
 }
