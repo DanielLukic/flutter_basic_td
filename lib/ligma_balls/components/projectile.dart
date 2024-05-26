@@ -34,6 +34,7 @@ class Projectile extends SpriteAnimationComponent {
     super.anchor = Anchor.center,
     super.key,
   }) : _isTarget = isTarget {
+    size = Vector2(8, 8);
     add(CircleHitbox(
       isSolid: true,
       collisionType: CollisionType.passive,
