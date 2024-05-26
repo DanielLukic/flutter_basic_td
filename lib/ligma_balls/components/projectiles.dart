@@ -11,6 +11,7 @@ Future<Projectile> makeProjectilePrototype(
   final anim = await switch (kind) {
     ProjectileKind.ligmaBalls => _ligmaBalls(),
     ProjectileKind.netflix => _netflix(),
+    ProjectileKind.ocaml => _ocaml(),
     ProjectileKind.twitchChat => _twitchChat(),
     ProjectileKind.vim => _vim(),
   };
@@ -27,6 +28,9 @@ Future<SpriteAnimation> _ligmaBalls() async =>
 
 Future<SpriteAnimation> _netflix() async =>
     _loadAnim(filename: 'netflix.png', frames: 1);
+
+Future<SpriteAnimation> _ocaml() async =>
+    _loadAnim(filename: 'ocaml.png', frames: 1);
 
 Future<SpriteAnimation> _twitchChat() async =>
     _loadAnim(filename: 'twitch_particle.png', frames: 1, size: 12);

@@ -12,6 +12,7 @@ bool isAttacker(PositionComponent it) => it is Attacker;
 enum ProjectileKind {
   ligmaBalls,
   netflix,
+  ocaml,
   twitchChat,
   vim,
 }
