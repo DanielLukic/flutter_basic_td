@@ -38,8 +38,6 @@ class NeoVim extends SpriteComponent with CollisionCallbacks, Defender, Life {
     scale.x = pulse;
     scale.y = pulse;
 
-    angle = _pulseTime * pi;
-
     _pulseTime += dt;
   }
 
