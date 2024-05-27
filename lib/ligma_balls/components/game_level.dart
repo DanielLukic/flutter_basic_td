@@ -1,4 +1,3 @@
-import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
@@ -9,15 +8,14 @@ import '../defenders/placement.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
 import '../util/extensions.dart';
-import '../util/tiled_map_overlay.dart';
 import 'common.dart';
 import 'level_dialog.dart';
 import 'scoreboard.dart';
+import 'trees.dart';
 
 late GameLevel level;
 
 late TiledComponent map;
-late TileLayer trees;
 
 class GameLevel extends Component {
   final int id;
@@ -71,7 +69,7 @@ class GameLevel extends Component {
 
     placement = Placement(map.tileMap);
 
-    trees = map.getLayer('Trees') as TileLayer;
+    final trees = Trees(map, map.getLayer('Trees') as TileLayer);
 
     final wpLayer = map.getLayer('Waypoints') as ObjectGroup;
     waypoints = Waypoints(wpLayer);
@@ -90,7 +88,7 @@ class GameLevel extends Component {
       waypoints,
       Thor(thorEntity),
       Prime(primeEntity),
-      TiledMapOverlay(map.tileMap, trees),
+      trees,
       if (showLevelDialog)
         LevelDialog('Level $id', map, ok: (it) {
           remove(it);
