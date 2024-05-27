@@ -13,6 +13,10 @@ const double tileSize = 16;
 const textColor = Color(0xFFffcc80);
 const errorColor = Color(0xFFff4020);
 
+const double gameWidth = 320;
+const double gameHeight = 320;
+const double levelHeight = 15 * tileSize;
+
 Paint pixelArtLayerPaint() => Paint()
   ..isAntiAlias = false
   ..filterQuality = FilterQuality.none;

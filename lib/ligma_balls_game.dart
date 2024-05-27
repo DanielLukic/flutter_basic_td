@@ -30,8 +30,8 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
   onGameResize(Vector2 size) {
     super.onGameResize(size);
     camera = CameraComponent.withFixedResolution(
-      width: 320,
-      height: 320,
+      width: gameWidth,
+      height: gameHeight,
       hudComponents: [_ticks(), _frames()],
     );
     camera.viewfinder.anchor = Anchor.topLeft;
