@@ -25,7 +25,7 @@ Future<Projectile> makeProjectilePrototype(
 }
 
 Future<SpriteAnimation> _ligmaBalls() async =>
-    _loadAnim(filename: 'balls.png', frames: 16);
+    _loadAnim(filename: 'balls.png', frames: 16, perRow: 8);
 
 Future<SpriteAnimation> _netflix() async =>
     _loadAnim(filename: 'netflix.png', frames: 1);
@@ -45,12 +45,14 @@ Future<SpriteAnimation> _vim() async =>
 Future<SpriteAnimation> _loadAnim({
   required String filename,
   required int frames,
+  int? perRow,
   double? size,
 }) async =>
     await game.loadSpriteAnimation(
         filename,
         SpriteAnimationData.sequenced(
           amount: frames,
+          amountPerRow: perRow ?? frames,
           stepTime: 0.05,
           textureSize: Vector2.all(size ?? 16),
         ));
