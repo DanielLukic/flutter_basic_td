@@ -73,7 +73,7 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
-    if (_projectile.isTarget(other) && _activeTarget == other) {
+    if (_projectile.isTarget(other)) {
       _targets.remove(other);
     }
   }
