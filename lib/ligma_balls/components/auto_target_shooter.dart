@@ -34,6 +34,11 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
     ));
   }
 
+  @override
+  onLoad() {
+    position = (parent as PositionComponent).size / 4;
+  }
+
   final _targets = <PositionComponent>[];
 
   PositionComponent? get _activeTarget => _targets.lastOrNull;
