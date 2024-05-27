@@ -24,7 +24,20 @@ class Soundboard {
     }
   }
 
-  play(Sound sound, {double volume = 0.5}) {
+  play(Sound sound, {double? volume}) {
+    volume ??= sound.volume;
     FlameAudio.play('${sound.name}.ogg', volume: volume);
+  }
+}
+
+extension on Sound {
+  double get volume {
+    if (this == Sound.deez_nutz) {
+      return 1;
+    } else if (this == Sound.ligma_balls) {
+      return 1;
+    } else {
+      return 0.5;
+    }
   }
 }

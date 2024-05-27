@@ -35,11 +35,17 @@ class WinLoseConditions extends Component {
       return;
     } else if (prime.remainingDamage == 0) {
       state = WinLoseState.gameOver;
-      soundboard.play(Sound.game_over);
+      Future.delayed(const Duration(seconds: 1)).then((_){
+        soundboard.play(Sound.game_over);
+        soundboard.play(Sound.ligma_balls);
+      });
     } else if (enemies.allDefeated) {
       state = WinLoseState.levelComplete;
       world.score += (prime.remainingDamage.toInt() * 100);
-      soundboard.play(Sound.score);
+      Future.delayed(const Duration(seconds: 1)).then((_){
+        soundboard.play(Sound.score);
+        soundboard.play(Sound.deez_nutz);
+      });
     }
     switch (state) {
       case WinLoseState.stillPlaying:
