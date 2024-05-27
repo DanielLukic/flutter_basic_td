@@ -5,8 +5,8 @@ mixin CanBeSlowedDown on HasTimeScale {
 
   bool get isSlowedDown => _slowDownSeconds > 0;
 
-  void slowDown() {
-    _slowDownSeconds = 2;
+  void slowDown([double factor = 1]) {
+    _slowDownSeconds = 2 * factor;
     timeScale = 0.1;
   }
 

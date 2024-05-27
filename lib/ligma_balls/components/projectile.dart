@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'common.dart';
 import 'ligma_world.dart';
 
-fireProjectile(
+Projectile fireProjectile(
   Projectile prototype,
   PositionComponent origin,
   PositionComponent target,
@@ -14,6 +14,7 @@ fireProjectile(
   projectile.direction = dir;
   projectile.position.setFrom(origin.position);
   world.level?.add(projectile);
+  return projectile;
 }
 
 class Projectile extends SpriteAnimationComponent {

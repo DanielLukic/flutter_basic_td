@@ -37,8 +37,15 @@ mixin TakingHits on CollisionCallbacks, Life {
         if (_self case CanBeSlowedDown it) {
           it.slowDown();
         }
-      } else if (_doesCauseHit(other.kind)) {
-        onHit(_self, damage: _modifier(other.kind));
+      }
+      if (other.kind == ProjectileKind.poop) {
+        if (_self case CanBeSlowedDown it) {
+          it.slowDown(0.1);
+        }
+      }
+      if (_doesCauseHit(other.kind)) {
+        final poopModifier = other.kind == ProjectileKind.poop ? 0.25 : 1;
+        onHit(_self, damage: _modifier(other.kind) * poopModifier);
       }
     }
   }

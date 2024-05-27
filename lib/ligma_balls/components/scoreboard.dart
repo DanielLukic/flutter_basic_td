@@ -4,18 +4,20 @@ import 'package:flame/extensions.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
-import 'package:ligma_balls/ligma_balls/components/bitmap_text.dart';
-import 'package:ligma_balls/ligma_balls/components/soundboard.dart';
 
+import '../defenders/dipshit.dart';
+import '../defenders/lithium.dart';
 import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
 import '../defenders/teej.dart';
 import '../defenders/twitch.dart';
 import '../util/bitmap_font.dart';
 import '../util/extensions.dart';
+import 'bitmap_text.dart';
 import 'common.dart';
 import 'game_level.dart';
 import 'ligma_world.dart';
+import 'soundboard.dart';
 
 class Scoreboard extends PositionComponent {
   @override
@@ -290,6 +292,8 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     world.level!.add(dragged!);
 
     final radius = switch (object.name) {
+      'Dipshit' => Dipshit.targetRadius,
+      'Lithium' => Lithium.targetRadius,
       'NeoVim' => NeoVim.targetRadius,
       'Teej' => Teej.targetRadius,
       'Twitch' => Twitch.targetRadius,
@@ -319,6 +323,8 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     placement.executePlacement((it) {
       level.subPoints(price);
       return switch (object.name) {
+        'Dipshit' => Dipshit(position: it),
+        'Lithium' => Lithium(position: it),
         'NeoVim' => NeoVim(position: it),
         'Teej' => Teej(position: it),
         'Twitch' => Twitch(position: it),

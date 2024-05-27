@@ -8,7 +8,7 @@ final world = LigmaWorld();
 class LigmaWorld extends World {
   GameLevel? level;
 
-  int levelId = 1;
+  int levelId = 3;
 
   int score = 0;
 

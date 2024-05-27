@@ -27,10 +27,12 @@ typedef IsTarget = bool Function(PositionComponent);
 bool isAttacker(PositionComponent it) => it is Attacker;
 
 enum ProjectileKind {
+  poop,
   ligmaBalls,
   netflix,
   ocaml,
   speech,
+  sub,
   twitchChat,
   vim,
 }
