@@ -19,6 +19,14 @@ class Enemies extends Component with HasVisibility {
 
   bool active = false;
 
+  bool get allDefeated {
+    if (nursery.isNotEmpty) return false;
+    for (final it in parent!.children) {
+      if (it is Attacker) return false;
+    }
+    return true;
+  }
+
   @override
   bool get isVisible => debug;
 
