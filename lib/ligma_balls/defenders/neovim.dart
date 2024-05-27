@@ -7,9 +7,10 @@ import '../components/life.dart';
 import '../components/projectiles.dart';
 import '../components/pulsing.dart';
 import '../components/taking_hits.dart';
+import 'free_placement.dart';
 
 class NeoVim extends SpriteComponent
-    with CollisionCallbacks, Defender, Life, TakingHits {
+    with CollisionCallbacks, FreePlacementOnRemove, Defender, Life, TakingHits {
   //
   NeoVim({required super.position, super.anchor = Anchor.center});
 

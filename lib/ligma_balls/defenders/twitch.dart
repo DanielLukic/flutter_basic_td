@@ -7,9 +7,10 @@ import '../components/life.dart';
 import '../components/projectiles.dart';
 import '../components/pulsing.dart';
 import '../components/taking_hits.dart';
+import 'free_placement.dart';
 
 class Twitch extends SpriteComponent
-    with CollisionCallbacks, Defender, Life, TakingHits {
+    with CollisionCallbacks, Defender, FreePlacementOnRemove, Life, TakingHits {
   //
   Twitch({required super.position, super.anchor = Anchor.center});
 

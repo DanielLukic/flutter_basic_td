@@ -9,9 +9,10 @@ import '../components/common.dart';
 import '../components/life.dart';
 import '../components/projectiles.dart';
 import '../components/taking_hits.dart';
+import 'free_placement.dart';
 
 class Teej extends SpriteComponent
-    with CollisionCallbacks, Defender, Life, TakingHits {
+    with CollisionCallbacks, Defender, FreePlacementOnRemove, Life, TakingHits {
   //
   Teej({required super.position, super.anchor = Anchor.center});
 

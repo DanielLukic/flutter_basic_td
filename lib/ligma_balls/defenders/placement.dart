@@ -119,4 +119,15 @@ class Placement extends Component with HasVisibility {
     }
     indicators = [];
   }
+
+  free(Vector2 center, [double tilesWH = 2]) {
+    final size = tilesWH * tileSize;
+    final x = (center.x - size / 2) ~/ tileSize;
+    final y = (center.y - size / 2) ~/ tileSize;
+    for (int dy = 0; dy < tilesWH; dy++) {
+      for (int dx = 0; dx < tilesWH; dx++) {
+        available[x + dx + (y + dy) * levelWidth] = true;
+      }
+    }
+  }
 }
