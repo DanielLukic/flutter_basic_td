@@ -38,6 +38,10 @@ abstract class BitmapFont {
   double lineSpacing = 2;
   Paint paint = Paint();
 
+  double lineHeight();
+
+  double lineWidth(String line);
+
   drawString(Canvas canvas, double x, double y, String string);
 
   drawText(Canvas canvas, double x, double y, String text);
@@ -72,6 +76,12 @@ class MonospacedBitmapFont extends BitmapFont {
         _charWidth.toDouble() * scale,
         _charHeight.toDouble() * scale,
       );
+
+  @override
+  double lineHeight() => _charHeight * scale;
+
+  @override
+  double lineWidth(String line) => line.length * _charWidth * scale;
 
   @override
   drawString(Canvas canvas, double x, double y, String string) {
@@ -124,6 +134,19 @@ class DstBitmapFont extends BitmapFont {
         width * scale,
         _charHeight.toDouble() * scale,
       );
+
+  @override
+  double lineHeight() => _charHeight * scale;
+
+  @override
+  double lineWidth(String line) {
+    double x = 0;
+    for (final c in line.codeUnits) {
+      final src = _cachedSrc(c);
+      x += src.width * scale;
+    }
+    return x;
+  }
 
   @override
   drawString(Canvas canvas, double x, double y, String string) {
