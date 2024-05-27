@@ -14,6 +14,8 @@ class Teej extends SpriteComponent
   //
   Teej({required super.position, super.anchor = Anchor.center});
 
+  static const double targetRadius = 64;
+
   @override
   Future<void> onLoad() async {
     sprite = await game.loadSprite('teej.png');
@@ -24,9 +26,12 @@ class Teej extends SpriteComponent
       100,
     );
 
-    add(AutoTargetShooter(radius: 64, projectile: projectile, reloadTime: 3));
+    add(AutoTargetShooter(
+      radius: targetRadius,
+      projectile: projectile,
+      reloadTime: 3,
+    ));
     add(CircleHitbox(radius: size.x / 2));
-    add(Pulsing());
 
     addLifeIndicatorTo(this, maxHits: 5);
     initTakingHits(this);

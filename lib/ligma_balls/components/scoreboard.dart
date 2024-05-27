@@ -213,6 +213,18 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     dragged!.priority = 800;
     dragged!.position = startPos + event.localPosition;
     world.level!.add(dragged!);
+
+    final radius = switch (object.name) {
+      'NeoVim' => NeoVim.targetRadius,
+      'Teej' => Teej.targetRadius,
+      'Twitch' => Twitch.targetRadius,
+      _ => throw ArgumentError('defender unknown: ${object.name}'),
+    };
+    final targetArea = CircleComponent(radius: radius, anchor: Anchor.center);
+    targetArea.paint.color = Colors.black;
+    targetArea.position = Vector2(dragged!.width/2, dragged!.height/2);
+    targetArea.opacity = 0.25;
+    dragged!.add(targetArea);
   }
 
   @override

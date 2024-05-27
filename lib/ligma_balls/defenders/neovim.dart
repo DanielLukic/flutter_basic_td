@@ -14,6 +14,8 @@ class NeoVim extends SpriteComponent
   //
   NeoVim({required super.position, super.anchor = Anchor.center});
 
+  static const double targetRadius = 64;
+
   @override
   Future<void> onLoad() async {
     sprite = await game.loadSprite('neovim.png');
@@ -24,9 +26,11 @@ class NeoVim extends SpriteComponent
       60,
     );
 
-    add(AutoTargetShooter(radius: 64, projectile: projectile));
+    add(
+      AutoTargetShooter(radius: targetRadius, projectile: projectile)
+        ..anchor = Anchor.center,
+    );
     add(CircleHitbox(radius: size.x / 2));
-    add(Pulsing());
 
     addLifeIndicatorTo(this, maxHits: 5);
     initTakingHits(this);
