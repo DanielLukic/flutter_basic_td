@@ -1,13 +1,11 @@
-import 'dart:math';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:ligma_balls/ligma_balls/components/pulsing.dart';
 
 import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
 import '../components/life.dart';
 import '../components/projectiles.dart';
+import '../components/pulsing.dart';
 import '../components/taking_hits.dart';
 import 'free_placement.dart';
 
