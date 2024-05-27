@@ -83,8 +83,15 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
 
   @override
   KeyEventResult onKeyEvent(
-      KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (event is KeyRepeatEvent) return KeyEventResult.skipRemainingHandlers;
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    if (!dev) {
+      return super.onKeyEvent(event, keysPressed);
+    }
+    if (event is KeyRepeatEvent) {
+      return KeyEventResult.skipRemainingHandlers;
+    }
     if (event is KeyDownEvent) {
       if (event.character == 'd') {
         debug = !debug;
