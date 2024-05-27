@@ -74,6 +74,20 @@ class LevelInfo extends PositionComponent with TapCallbacks {
 }
 
 class PlacementPoints extends Component {
+  final double minStep = 5;
+
+  double displayPoints = 0;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (level.remainingPoints != displayPoints) {
+      var delta = (level.remainingPoints - displayPoints) * dt;
+      if (delta.abs() < minStep) delta = delta < 0 ? -minStep : minStep;
+      displayPoints += delta;
+    }
+  }
+
   @override
   void render(Canvas canvas) {
     super.render(canvas);
@@ -84,7 +98,7 @@ class PlacementPoints extends Component {
 
     menuFont.scale = 0.5;
     menuFont.tint(textColor);
-    menuFont.drawText(canvas, 120, 31, '\$${level.displayPoints.toInt()}');
+    menuFont.drawText(canvas, 120, 31, '\$${displayPoints.toInt()}');
   }
 }
 

@@ -25,8 +25,6 @@ class GameLevel extends Component {
 
   GameLevel(this.id) : basename = 'level$id';
 
-  double displayPoints = 0;
-
   double remainingPoints = 0;
 
   void addPoints(int count) {
@@ -36,18 +34,6 @@ class GameLevel extends Component {
   void subPoints(int count) {
     remainingPoints -= count;
     if (remainingPoints < 0) remainingPoints = 0;
-  }
-
-  final double minStep = 5;
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    if (remainingPoints != displayPoints) {
-      var delta = (remainingPoints - displayPoints) * dt;
-      if (delta.abs() < minStep) delta = delta < 0 ? -minStep : minStep;
-      displayPoints += delta;
-    }
   }
 
   @override
@@ -61,8 +47,7 @@ class GameLevel extends Component {
       layerPaintFactory: (it) => pixelArtLayerPaint(),
     );
 
-    displayPoints = map.intProperty('PlacementPoints').toDouble();
-    remainingPoints = displayPoints;
+    remainingPoints = map.intProperty('PlacementPoints').toDouble();
 
     map.setLayerHidden('Accessible');
     map.setLayerHidden('Entities');
