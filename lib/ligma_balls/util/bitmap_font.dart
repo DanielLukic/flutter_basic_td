@@ -3,6 +3,12 @@ import 'dart:ui';
 
 import 'package:flame/cache.dart';
 
+extension BitmapFontExtensions on BitmapFont {
+  void tint(Color color) {
+    paint.colorFilter = ColorFilter.mode(color, BlendMode.srcATop);
+  }
+}
+
 abstract class BitmapFont {
   static loadMono(
     Images images,

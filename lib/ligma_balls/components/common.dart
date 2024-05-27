@@ -10,6 +10,9 @@ import '../util/bitmap_font.dart';
 
 const double tileSize = 16;
 
+const textColor = Color(0xFFffcc80);
+const errorColor = Color(0xFFff4020);
+
 Paint pixelArtLayerPaint() => Paint()
   ..isAntiAlias = false
   ..filterQuality = FilterQuality.none;

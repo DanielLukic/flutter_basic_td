@@ -10,6 +10,7 @@ import '../defenders/neovim.dart';
 import '../defenders/placement.dart';
 import '../defenders/teej.dart';
 import '../defenders/twitch.dart';
+import '../util/bitmap_font.dart';
 import '../util/extensions.dart';
 import 'common.dart';
 import 'game_level.dart';
@@ -43,9 +44,9 @@ class LevelInfo extends Component {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-    fancyFont.paint = Paint();
-    fancyFont.scale = 1;
-    fancyFont.drawText(canvas, 120, 56, 'Level ${level.id}');
+    menuFont.scale = 0.5;
+    menuFont.tint(textColor);
+    menuFont.drawText(canvas, 120, 56, 'Level ${level.id}');
   }
 }
 
@@ -53,11 +54,14 @@ class PlacementPoints extends Component {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-    fancyFont.paint = Paint();
-    fancyFont.scale = 1;
-    fancyFont.drawText(canvas, 80, 16, '\$${level.displayPoints.toInt()}');
-    fancyFont.scale = 0.5;
-    fancyFont.drawText(canvas, 80, 29, 'Remaining\nFor Placement');
+
+    menuFont.scale = 0.25;
+    menuFont.tint(textColor);
+    menuFont.drawText(canvas, 120, 15, 'Defender\nBudget:');
+
+    menuFont.scale = 0.5;
+    menuFont.tint(textColor);
+    menuFont.drawText(canvas, 120, 31, '\$${level.displayPoints.toInt()}');
   }
 }
 
@@ -100,8 +104,9 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-    fancyFont.scale = 0.5;
-    fancyFont.drawText(canvas, 0, 20, '\$$price');
+    menuFont.scale = 0.25;
+    menuFont.tint(available ? textColor : errorColor);
+    menuFont.drawText(canvas, 0, 20, '\$$price');
   }
 
   @override
