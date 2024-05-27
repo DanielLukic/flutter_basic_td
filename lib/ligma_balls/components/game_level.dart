@@ -91,7 +91,7 @@ class GameLevel extends Component {
 
   late Prime prime;
 
-  bool showLevelDialog = false;
+  bool showLevelDialog = true;
 
   startLevel() {
     enemies.active = true;
