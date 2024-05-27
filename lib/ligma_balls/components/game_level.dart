@@ -13,6 +13,7 @@ import 'level_dialog.dart';
 import 'pills.dart';
 import 'scoreboard.dart';
 import 'trees.dart';
+import 'win_lose_conditions.dart';
 
 late GameLevel level;
 
@@ -91,16 +92,19 @@ class GameLevel extends Component {
       enemies,
       waypoints,
       Thor(thorEntity),
-      Prime(primeEntity),
+      prime = Prime(primeEntity),
       trees,
       if (showLevelDialog)
         LevelDialog('Level $id', map, ok: (it) {
           remove(it);
           startLevel();
         }),
+      WinLoseConditions(prime, enemies),
     ]);
     enemies.active = !showLevelDialog;
   }
+
+  late Prime prime;
 
   bool showLevelDialog = false;
 
