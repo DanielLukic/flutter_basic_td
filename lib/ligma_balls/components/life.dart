@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
 import 'common.dart';
 import 'smoke.dart';
@@ -30,6 +31,7 @@ mixin Life {
     if (_hits > maxHits) _hits = maxHits;
     _life.radius = it.size.x / 2 / maxHits * _hits;
     if (_hits < maxHits) return;
+    world.score += maxHits * 5;
     it.add(RemoveEffect(delay: 0.25));
     for (var i = 0; i < 10; i++) {
       smokeAt(it.position + randomNormalizedVector() * it.size.x / 2);

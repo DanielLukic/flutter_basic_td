@@ -2,6 +2,7 @@ import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
 import '../components/common.dart';
 import '../components/game_level.dart';
@@ -109,9 +110,7 @@ class Placement extends Component with HasVisibility {
         final y = it.position.y ~/ tileSize;
         available[x + y * levelWidth] = false;
       }
-      // TODO collect pills
-    } else {
-      logInfo('invalid placement');
+      world.score += 10;
     }
 
     for (final it in indicators) {

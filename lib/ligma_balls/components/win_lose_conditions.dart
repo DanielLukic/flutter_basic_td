@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:ligma_balls/ligma_balls/components/game_over_dialog.dart';
 import 'package:ligma_balls/ligma_balls/components/level_complete_dialog.dart';
+import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
 import '../adversaries/prime.dart';
 import '../enemies/enemies.dart';
@@ -35,6 +36,7 @@ class WinLoseConditions extends Component {
       state = WinLoseState.gameOver;
     } else if (enemies.allDefeated) {
       state = WinLoseState.levelComplete;
+      world.score += prime.remainingHits * 100;
     }
     switch (state) {
       case WinLoseState.stillPlaying:

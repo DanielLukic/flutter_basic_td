@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
 import '../defenders/placement.dart';
 import '../util/extensions.dart';
@@ -52,6 +53,7 @@ class Pills extends Component {
     for (final key in consume) {
       final it = tiles.remove(key)!;
       level.addPoints(it.$1 == 234 ? 10 : 15);
+      world.score += 5;
       remove(it.$2);
     }
   }
