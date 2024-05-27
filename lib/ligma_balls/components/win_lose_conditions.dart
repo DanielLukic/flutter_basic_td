@@ -32,11 +32,11 @@ class WinLoseConditions extends Component {
     super.update(dt);
     if (state != WinLoseState.stillPlaying) {
       return;
-    } else if (prime.remainingHits == 0) {
+    } else if (prime.remainingDamage == 0) {
       state = WinLoseState.gameOver;
     } else if (enemies.allDefeated) {
       state = WinLoseState.levelComplete;
-      world.score += prime.remainingHits * 100;
+      world.score += (prime.remainingDamage.toInt() * 100);
     }
     switch (state) {
       case WinLoseState.stillPlaying:

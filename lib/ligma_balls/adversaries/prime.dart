@@ -24,7 +24,7 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
     position = Vector2(object.x + 8, object.y - 8);
     priority = 50;
     add(CircleHitbox(isSolid: true, collisionType: CollisionType.active));
-    addLifeIndicatorTo(this, maxHits: 10);
+    addLifeIndicatorTo(this, maxDamage: 10);
   }
 
   @override
@@ -35,8 +35,8 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
     super.onCollisionStart(intersectionPoints, other);
     if (other is AutoTargetShooter) return;
     if (other case Life it) {
-      onHit(this, count: it.remainingHits);
-      logInfo('prime remaining hits: $remainingHits');
+      onHit(this, damage: it.remainingDamage);
+      logInfo('prime remaining hits: $remainingDamage');
     }
     if (other is Projectile) {
       other.add(RemoveEffect(delay: 0.1));

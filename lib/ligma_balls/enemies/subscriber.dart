@@ -26,7 +26,7 @@ class Subscriber extends SpriteComponent
   onLoad() async {
     add(CircleHitbox(collisionType: CollisionType.active));
     add(FollowWaypoints());
-    addLifeIndicatorTo(this, maxHits: 10);
+    addLifeIndicatorTo(this, maxDamage: 10);
     initTakingHits(this);
   }
 }

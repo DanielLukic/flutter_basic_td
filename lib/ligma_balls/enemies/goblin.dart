@@ -37,7 +37,7 @@ class Goblin extends SpriteComponent
     add(CircleHitbox(collisionType: CollisionType.active));
     add(FollowWaypoints());
 
-    addLifeIndicatorTo(this, maxHits: 1);
+    addLifeIndicatorTo(this, maxDamage: 1);
     initTakingHits(this);
   }
 }

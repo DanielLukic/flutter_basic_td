@@ -32,7 +32,7 @@ class NeoVim extends SpriteComponent
     );
     add(CircleHitbox(radius: size.x / 2));
 
-    addLifeIndicatorTo(this, maxHits: 5);
+    addLifeIndicatorTo(this, maxDamage: 5);
     initTakingHits(this);
   }
 }

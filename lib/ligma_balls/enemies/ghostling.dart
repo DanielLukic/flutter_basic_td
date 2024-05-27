@@ -37,7 +37,7 @@ class Ghostling extends SpriteComponent
     add(CircleHitbox(collisionType: CollisionType.active));
     add(FollowWaypoints());
 
-    addLifeIndicatorTo(this, maxHits: 2);
+    addLifeIndicatorTo(this, maxDamage: 2);
     initTakingHits(this, whereKind: (it) => it != ProjectileKind.vim);
   }
 }
