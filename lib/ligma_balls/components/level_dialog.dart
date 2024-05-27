@@ -11,7 +11,9 @@ import '../util/nine_patch_image.dart';
 import 'common.dart';
 import 'game_level.dart';
 
-class LevelDialog extends Component with KeyboardHandler, TapCallbacks {
+class LevelDialog extends Component
+    with KeyboardHandler, DragCallbacks, TapCallbacks {
+  //
   final String title;
   final TiledComponent map;
   final Function(LevelDialog)? ok;
