@@ -34,10 +34,10 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
     ));
   }
 
+  void Function(Projectile) modify = (_) {};
+
   @override
-  onLoad() {
-    position = (parent as PositionComponent).size / 4;
-  }
+  onLoad() => position = (parent as PositionComponent).size / 4;
 
   final _targets = <PositionComponent>[];
 
@@ -56,7 +56,8 @@ class AutoTargetShooter extends PositionComponent with CollisionCallbacks {
       _reload -= dt;
     } else {
       final origin = parent as PositionComponent;
-      fireProjectile(_projectile, origin, target);
+      final it = fireProjectile(_projectile, origin, target);
+      modify(it);
       _reload = _reloadTime;
     }
   }
