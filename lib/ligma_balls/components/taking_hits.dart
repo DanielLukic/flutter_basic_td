@@ -11,13 +11,16 @@ import 'smoke.dart';
 mixin TakingHits on CollisionCallbacks, Life {
   late PositionComponent _self;
   late bool Function(ProjectileKind) _doesCauseHit;
+  late double Function(ProjectileKind) _modifier;
 
   void initTakingHits(
     PositionComponent self, {
     bool Function(ProjectileKind)? whereKind,
+    double Function(ProjectileKind)? modifier,
   }) {
     _self = self;
     _doesCauseHit = whereKind ?? (_) => true;
+    _modifier = modifier ?? (_) => 1;
   }
 
   @override
@@ -35,7 +38,7 @@ mixin TakingHits on CollisionCallbacks, Life {
           it.slowDown();
         }
       } else if (_doesCauseHit(other.kind)) {
-        onHit(_self);
+        onHit(_self, damage: _modifier(other.kind));
       }
     }
   }
