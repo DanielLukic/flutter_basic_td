@@ -10,6 +10,7 @@ import '../enemies/waypoints.dart';
 import '../util/extensions.dart';
 import 'common.dart';
 import 'level_dialog.dart';
+import 'pills.dart';
 import 'scoreboard.dart';
 import 'trees.dart';
 
@@ -64,11 +65,13 @@ class GameLevel extends Component {
 
     map.setLayerHidden('Accessible');
     map.setLayerHidden('Entities');
+    map.setLayerHidden('Pills');
     map.setLayerHidden('Trees');
     map.setLayerHidden('Waypoints');
 
     placement = Placement(map.tileMap);
 
+    final pills = Pills(map, map.getLayer('Pills') as TileLayer);
     final trees = Trees(map, map.getLayer('Trees') as TileLayer);
 
     final wpLayer = map.getLayer('Waypoints') as ObjectGroup;
@@ -83,6 +86,7 @@ class GameLevel extends Component {
     addAll([
       map,
       placement,
+      pills,
       Scoreboard(),
       enemies,
       waypoints,
