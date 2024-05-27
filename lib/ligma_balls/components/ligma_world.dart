@@ -10,6 +10,8 @@ class LigmaWorld extends World {
 
   int levelId = 1;
 
+  int score = 0;
+
   void prevLevel() {
     if (levelId > 1) levelId--;
     world.loadLevel();
