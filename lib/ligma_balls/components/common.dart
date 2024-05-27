@@ -59,12 +59,12 @@ late Images images;
 final random = Random();
 
 final entityTileIndex = {
+  'Diablo': 245,
   'Goblin': 397,
   'Ghostling': 429,
   'Subscriber': 400,
-  'Spider': 430,
-  'Crab': 398,
-  'Knight': 364,
+  'Dipshit': 244,
+  'Lithium': 213,
   'NeoVim': 210,
   'Teej': 243,
   'Twitch': 212,
@@ -74,6 +74,7 @@ final entityInfo = {
   //
   // Attackers
   //
+  'Diablo': 'The beast from hell!\nIs there even a way to stop this?!',
   'Goblin': 'A Twitch Goblin. Asks stupid questions in\nTwitch chat to get on'
       ' prime\'s nerves.',
   'Ghostling': 'A Twitch Lurker. Careful: Throws Ligma Balls\nand knows VIM! '
@@ -83,6 +84,8 @@ final entityInfo = {
   //
   // Defenders
   //
+  'Dipshit': 'Dipshit.. well.. dips attackers in..\nwell.. shit!',
+  'Lithium': 'Lithium gifts subs to attackers.\nPotentially converting them!',
   'NeoVim': 'The NeoVIM editor. When attackers are hit,\n'
       'they will not be able to exit VIM!',
   'Teej': 'Teej talks about Ocaml and Elixir, making\n'

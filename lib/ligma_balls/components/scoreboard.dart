@@ -224,6 +224,8 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     size = Vector2.all(16);
 
     price = switch (object.name) {
+      'Dipshit' => 250,
+      'Lithium' => 400,
       'NeoVim' => 80,
       'Teej' => 200,
       'Twitch' => 90,
