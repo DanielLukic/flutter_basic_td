@@ -38,6 +38,9 @@ class Goblin extends SpriteComponent
     add(FollowWaypoints());
 
     addLifeIndicatorTo(this, maxDamage: 1);
-    initTakingHits(this);
+    initTakingHits(
+      this,
+      modifier: (it) => it == ProjectileKind.twitchChat ? 0.25 : 1,
+    );
   }
 }
