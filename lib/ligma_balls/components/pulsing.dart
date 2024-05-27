@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:ligma_balls/ligma_balls/components/common.dart';
 
 // TODO make Effect plus EffectTarget?
 
@@ -13,7 +14,7 @@ class Pulsing extends Component {
     }
   }
 
-  double _pulseTime = 0;
+  double _pulseTime = random.nextDouble();
 
   @override
   void update(double dt) {
