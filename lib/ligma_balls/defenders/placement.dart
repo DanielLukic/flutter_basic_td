@@ -4,12 +4,12 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
-import 'package:ligma_balls/components/soundboard.dart';
-import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
-import 'package:ligma_balls/ligma_balls/components/smoke.dart';
 
 import '../components/common.dart';
 import '../components/game_level.dart';
+import '../components/ligma_world.dart';
+import '../components/smoke.dart';
+import '../components/soundboard.dart';
 import '../util/extensions.dart';
 import '../util/tiled_map_overlay.dart';
 

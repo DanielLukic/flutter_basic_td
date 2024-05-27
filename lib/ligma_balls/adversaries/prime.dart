@@ -9,6 +9,7 @@ import '../components/common.dart';
 import '../components/life.dart';
 import '../components/projectile.dart';
 import '../components/smoke.dart';
+import '../components/soundboard.dart';
 
 bool isDefender(PositionComponent it) => it is Defender || it is Prime;
 
@@ -19,7 +20,7 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
   Prime(this.object) : super(anchor: Anchor.center);
 
   @override
-  Future<void> onLoad() async {
+  onLoad() async {
     sprite = await game.loadSprite('prime.png');
     position = Vector2(object.x + 8, object.y - 8);
     priority = 50;
@@ -40,8 +41,10 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
     }
     if (other is Projectile) {
       other.add(RemoveEffect(delay: 0.1));
+      soundboard.play(Sound.vim);
     } else {
-      other.add(RemoveEffect(delay: 1));
+      other.add(RemoveEffect(delay: 0.5));
+      soundboard.play(Sound.ligma);
     }
   }
 

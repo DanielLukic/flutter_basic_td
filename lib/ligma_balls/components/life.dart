@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
-import '../../components/soundboard.dart';
 import 'common.dart';
+import 'ligma_world.dart';
 import 'smoke.dart';
+import 'soundboard.dart';
 
 mixin Life {
   late CircleComponent _life;

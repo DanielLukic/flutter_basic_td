@@ -4,7 +4,10 @@ import 'package:flame_audio/flame_audio.dart';
 enum Sound {
   death,
   explosion,
+  deez_nutz,
   game_over,
+  ligma,
+  ligma_balls,
   rock,
   score,
   swoosh,
