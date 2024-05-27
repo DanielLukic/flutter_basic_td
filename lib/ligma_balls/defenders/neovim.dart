@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:ligma_balls/components/soundboard.dart';
 
 import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
@@ -32,7 +33,7 @@ class NeoVim extends SpriteComponent
     );
     add(CircleHitbox(radius: size.x / 2));
 
-    addLifeIndicatorTo(this, maxDamage: 5);
+    addLifeIndicatorTo(this, maxDamage: 5, deathSound: Sound.explosion);
     initTakingHits(this);
   }
 }

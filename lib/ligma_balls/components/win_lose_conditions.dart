@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:ligma_balls/components/soundboard.dart';
 import 'package:ligma_balls/ligma_balls/components/game_over_dialog.dart';
 import 'package:ligma_balls/ligma_balls/components/level_complete_dialog.dart';
 import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
@@ -34,9 +35,11 @@ class WinLoseConditions extends Component {
       return;
     } else if (prime.remainingDamage == 0) {
       state = WinLoseState.gameOver;
+      soundboard.play(Sound.game_over);
     } else if (enemies.allDefeated) {
       state = WinLoseState.levelComplete;
       world.score += (prime.remainingDamage.toInt() * 100);
+      soundboard.play(Sound.score);
     }
     switch (state) {
       case WinLoseState.stillPlaying:

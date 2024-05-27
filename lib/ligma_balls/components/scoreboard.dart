@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -222,7 +220,7 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
     };
     final targetArea = CircleComponent(radius: radius, anchor: Anchor.center);
     targetArea.paint.color = Colors.black;
-    targetArea.position = Vector2(dragged!.width/2, dragged!.height/2);
+    targetArea.position = Vector2(dragged!.width / 2, dragged!.height / 2);
     targetArea.opacity = 0.25;
     dragged!.add(targetArea);
   }

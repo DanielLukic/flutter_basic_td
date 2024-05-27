@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:ligma_balls/components/soundboard.dart';
 import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 import 'package:ligma_balls/ligma_balls/components/smoke.dart';
 
@@ -127,6 +128,7 @@ class Placement extends Component with HasVisibility {
         final it = smokeAt(center + off + randomNormalizedVector() * 4);
         it.add(move);
       }
+      soundboard.play(Sound.rock);
     }
 
     for (final it in indicators) {
