@@ -4,7 +4,7 @@
   <property name="Description">Oh my! Thor sends his subscribers to attack Prime!
 
 Prime's Moustache (TM) must survive!</property>
-  <property name="PlacementPoints" type="int" value="500"/>
+  <property name="PlacementPoints" type="int" value="600"/>
  </properties>
  <tileset firstgid="1" source="tiles.tsx"/>
  <layer id="1" name="BackgroundAndPath" width="20" height="15">
@@ -104,8 +104,8 @@ Prime's Moustache (TM) must survive!</property>
  </layer>
  <layer id="14" name="Accessible" width="20" height="15">
   <data encoding="csv">
-269,269,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-269,269,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
