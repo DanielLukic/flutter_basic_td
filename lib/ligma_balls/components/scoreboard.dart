@@ -192,9 +192,12 @@ class PlacementPoints extends Component {
   @override
   void update(double dt) {
     super.update(dt);
-    if (level.remainingPoints != displayPoints) {
-      var delta = (level.remainingPoints - displayPoints) * dt;
-      if (delta.abs() < minStep) delta = delta < 0 ? -minStep : minStep;
+    if (level.remainingPoints == displayPoints) return;
+
+    var delta = (level.remainingPoints - displayPoints) * dt;
+    if (delta.abs() < minStep) {
+      displayPoints = level.remainingPoints;
+    } else {
       displayPoints += delta;
     }
   }
