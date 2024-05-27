@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import '../components/common.dart';
@@ -23,6 +24,9 @@ class FollowWaypoints extends Component {
     final position = (parent as PositionComponent).position;
     waypoints.setPositionAt(_waytime, 25, position);
     _waytime += dt;
+    if (waypoints.reachedEnd(_waytime, 25)) {
+      parent?.add(RemoveEffect(delay: 0.1));
+    }
   }
 }
 
@@ -79,6 +83,16 @@ class Waypoints extends Component with HasVisibility {
       }
       at -= a.$2;
     }
+  }
+
+  bool reachedEnd(double waytime, double speed) {
+    var at = waytime * speed;
+    for (var i = 0; i < path.length - 1; i++) {
+      final a = path[i];
+      if (at <= a.$2) return false;
+      at -= a.$2;
+    }
+    return true;
   }
 
   @override
