@@ -6,7 +6,7 @@ mixin CanBeSlowedDown on HasTimeScale {
   bool get isSlowedDown => _slowDownSeconds > 0;
 
   void slowDown() {
-    _slowDownSeconds = 10;
+    _slowDownSeconds = 2;
     timeScale = 0.1;
   }
 
