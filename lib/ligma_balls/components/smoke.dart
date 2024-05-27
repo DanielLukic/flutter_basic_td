@@ -1,10 +1,12 @@
 import 'package:flame/components.dart';
 
 import 'common.dart';
-import 'ligma_world.dart';
+import 'game_level.dart';
 
-void smokeAt(Vector2 position) {
-  world.level?.add(Smoke(position: position));
+Smoke smokeAt(Vector2 position) {
+  final smoke = Smoke(position: position);
+  level.add(smoke);
+  return smoke;
 }
 
 void smokeAround(Vector2 position, Vector2 size, [int? count]) {
@@ -13,7 +15,7 @@ void smokeAround(Vector2 position, Vector2 size, [int? count]) {
     final at = randomNormalizedVector();
     at.x *= size.x;
     at.y *= size.y;
-    world.level?.add(Smoke(position: position + at));
+    level.add(Smoke(position: position + at));
   });
 }
 

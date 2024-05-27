@@ -1,8 +1,11 @@
-import 'package:dart_minilog/dart_minilog.dart';
+import 'dart:math';
+
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
+import 'package:ligma_balls/ligma_balls/components/smoke.dart';
 
 import '../components/common.dart';
 import '../components/game_level.dart';
@@ -111,6 +114,19 @@ class Placement extends Component with HasVisibility {
         available[x + y * levelWidth] = false;
       }
       world.score += 10;
+      final center = indicators[3].position;
+      const step = (pi * 2) / 16;
+      final off = Vector2.zero();
+      for (double rad = 0; rad < pi * 2; rad += step) {
+        off.x = sin(rad) * tileSize / 3;
+        off.y = cos(rad) * tileSize / 3;
+        final move = MoveByEffect(
+          off,
+          CurvedEffectController(1, const ElasticOutCurve()),
+        );
+        final it = smokeAt(center + off + randomNormalizedVector() * 4);
+        it.add(move);
+      }
     }
 
     for (final it in indicators) {
