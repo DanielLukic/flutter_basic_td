@@ -6,10 +6,10 @@ import 'package:flame/events.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/services.dart';
 
+import '../components/common.dart';
 import '../util/extensions.dart';
 import '../util/fonts.dart';
 import '../util/nine_patch_image.dart';
-import 'common.dart';
 import 'game_level.dart';
 
 class LevelDialog extends Component

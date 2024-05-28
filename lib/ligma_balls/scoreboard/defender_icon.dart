@@ -5,14 +5,14 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart' hide Image;
 
 import '../components/common.dart';
-import '../components/game_level.dart';
 import '../components/ligma_world.dart';
-import '../components/placement.dart';
 import '../defenders/dipshit.dart';
 import '../defenders/lithium.dart';
 import '../defenders/neovim.dart';
+import '../defenders/placement.dart';
 import '../defenders/teej.dart';
 import '../defenders/twitch.dart';
+import '../level/game_level.dart';
 import '../util/bitmap_font.dart';
 import '../util/extensions.dart';
 import '../util/fonts.dart';

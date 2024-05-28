@@ -1,11 +1,11 @@
 import 'package:flame/components.dart';
 
+import '../components/common.dart';
+import '../components/dialog.dart';
+import '../components/ligma_world.dart';
 import '../util/bitmap_button.dart';
 import '../util/bitmap_text.dart';
 import '../util/fonts.dart';
-import 'common.dart';
-import 'dialog.dart';
-import 'ligma_world.dart';
 
 class LevelCompleteDialog extends Component {
   @override

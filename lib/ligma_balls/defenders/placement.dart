@@ -5,16 +5,24 @@ import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 
+import '../components/common.dart';
+import '../components/ligma_world.dart';
+import '../components/smoke.dart';
+import '../components/soundboard.dart';
+import '../level/game_level.dart';
 import '../util/extensions.dart';
 import '../util/random.dart';
 import '../util/tiled_map_overlay.dart';
-import 'common.dart';
-import 'game_level.dart';
-import 'ligma_world.dart';
-import 'smoke.dart';
-import 'soundboard.dart';
 
 late Placement placement;
+
+mixin FreePlacementOnRemove on PositionComponent {
+  @override
+  void onRemove() {
+    super.onRemove();
+    placement.free(position);
+  }
+}
 
 class Placement extends Component with HasVisibility {
   final RenderableTiledMap _map;

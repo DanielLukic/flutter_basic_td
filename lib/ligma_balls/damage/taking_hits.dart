@@ -3,10 +3,10 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 
 import '../components/common.dart';
-import 'life.dart';
 import '../components/smoke.dart';
 import '../util/random.dart';
 import 'can_be_slowed_down.dart';
+import 'life.dart';
 import 'projectile.dart';
 
 mixin TakingHits on CollisionCallbacks, Life {

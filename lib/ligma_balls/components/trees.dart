@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
+import '../defenders/placement.dart';
 import '../util/extensions.dart';
 import 'common.dart';
-import 'placement.dart';
 
 class Trees extends Component {
   TiledComponent map;

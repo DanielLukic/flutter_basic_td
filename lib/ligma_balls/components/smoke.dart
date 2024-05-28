@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 
+import '../level/game_level.dart';
 import '../util/random.dart';
 import 'common.dart';
-import 'game_level.dart';
 
 Smoke smokeAt(Vector2 position) {
   final smoke = Smoke(position: position);

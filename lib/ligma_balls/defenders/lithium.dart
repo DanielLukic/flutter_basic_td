@@ -7,7 +7,7 @@ import '../damage/auto_target_shooter.dart';
 import '../damage/life.dart';
 import '../damage/projectiles.dart';
 import '../damage/taking_hits.dart';
-import 'free_placement.dart';
+import 'placement.dart';
 
 class Lithium extends SpriteComponent
     with CollisionCallbacks, FreePlacementOnRemove, Defender, Life, TakingHits {

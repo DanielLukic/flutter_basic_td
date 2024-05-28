@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 
+import '../level/game_level.dart';
 import 'common.dart';
-import 'game_level.dart';
 
 final world = LigmaWorld();
 

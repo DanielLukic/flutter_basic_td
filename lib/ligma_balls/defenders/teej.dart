@@ -7,7 +7,7 @@ import '../damage/auto_target_shooter.dart';
 import '../damage/life.dart';
 import '../damage/projectiles.dart';
 import '../damage/taking_hits.dart';
-import 'free_placement.dart';
+import 'placement.dart';
 
 class Teej extends SpriteComponent
     with CollisionCallbacks, Defender, FreePlacementOnRemove, Life, TakingHits {

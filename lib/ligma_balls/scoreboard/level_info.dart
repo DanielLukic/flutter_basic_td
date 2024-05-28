@@ -3,8 +3,8 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 
 import '../components/common.dart';
-import '../components/game_level.dart';
 import '../components/ligma_world.dart';
+import '../level/game_level.dart';
 import '../util/bitmap_font.dart';
 import '../util/fonts.dart';
 

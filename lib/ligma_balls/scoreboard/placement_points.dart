@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' hide Image;
 
-import '../components/game_level.dart';
+import '../level/game_level.dart';
 import '../util/bitmap_font.dart';
 import '../util/fonts.dart';
 

@@ -4,15 +4,15 @@ import 'package:flutter/foundation.dart';
 
 import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
+import '../components/common.dart';
+import '../components/pills.dart';
+import '../components/trees.dart';
+import '../defenders/placement.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
 import '../scoreboard/scoreboard.dart';
 import '../util/extensions.dart';
-import 'common.dart';
 import 'level_dialog.dart';
-import 'pills.dart';
-import 'placement.dart';
-import 'trees.dart';
 import 'win_lose_conditions.dart';
 
 late GameLevel level;
