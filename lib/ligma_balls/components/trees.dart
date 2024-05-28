@@ -15,8 +15,6 @@ class Trees extends Component {
 
   @override
   onLoad() {
-    priority = 250;
-
     final w = layer.width;
     final h = layer.height;
     for (var y = 0; y < h; y++) {
@@ -27,7 +25,10 @@ class Trees extends Component {
           final sprite = map.tileSprite(id);
           final pos = Vector2(x * tileSize, y * tileSize);
           final tile = SpriteComponent(sprite: sprite, position: pos);
-          if (id != 109 && id != 110) tiles[idx] = tile;
+          if (id != 109 && id != 110) {
+            tiles[idx] = tile;
+            tile.priority = 250;
+          }
           add(tile);
         }
       }
