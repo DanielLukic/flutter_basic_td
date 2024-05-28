@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:ligma_balls/ligma_balls/components/common.dart';
+
+import '../util/random.dart';
 
 // TODO make Effect plus EffectTarget?
 

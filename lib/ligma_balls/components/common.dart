@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/cache.dart';
@@ -40,8 +39,6 @@ enum ProjectileKind {
 mixin Attacker {}
 mixin Defender {}
 
-Vector2 randomNormalizedVector() => Vector2.random(random) - Vector2.random();
-
 void repeat(int count, void Function(int) func) {
   for (var i = 0; i < count; i++) {
     func(i);
@@ -57,8 +54,6 @@ late BitmapFont textFont;
 
 late Game game;
 late Images images;
-
-final random = Random();
 
 final entityTileIndex = {
   'Diablo': 245,

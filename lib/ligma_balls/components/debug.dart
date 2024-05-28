@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
-import 'package:ligma_balls/ligma_balls/components/common.dart';
+
+import 'common.dart';
 
 class DebugCircleHitbox extends CircleComponent with HasVisibility {
   DebugCircleHitbox({

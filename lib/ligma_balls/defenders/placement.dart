@@ -11,6 +11,7 @@ import '../components/ligma_world.dart';
 import '../components/smoke.dart';
 import '../components/soundboard.dart';
 import '../util/extensions.dart';
+import '../util/random.dart';
 import '../util/tiled_map_overlay.dart';
 
 late Placement placement;

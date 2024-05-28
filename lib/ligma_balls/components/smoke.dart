@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 
+import '../util/random.dart';
 import 'common.dart';
 import 'game_level.dart';
 

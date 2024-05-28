@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 
 import '../enemies/can_be_slowed_down.dart';
+import '../util/random.dart';
 import 'common.dart';
 import 'life.dart';
 import 'projectile.dart';

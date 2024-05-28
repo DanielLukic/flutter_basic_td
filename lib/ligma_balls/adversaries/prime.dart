@@ -10,6 +10,7 @@ import '../components/life.dart';
 import '../components/projectile.dart';
 import '../components/smoke.dart';
 import '../components/soundboard.dart';
+import '../util/random.dart';
 
 bool isDefender(PositionComponent it) => it is Defender || it is Prime;
 
