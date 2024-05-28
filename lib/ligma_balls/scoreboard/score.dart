@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 
-import '../components/common.dart';
 import '../components/ligma_world.dart';
 import '../util/bitmap_font.dart';
+import '../util/fonts.dart';
 
 class Score extends PositionComponent {
   final double minStep = 5;

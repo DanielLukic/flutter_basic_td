@@ -6,11 +6,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'components/soundboard.dart';
 import 'components/common.dart';
 import 'components/ligma_world.dart';
 import 'components/performance.dart';
+import 'components/soundboard.dart';
 import 'util/bitmap_font.dart';
+import 'util/fonts.dart';
 
 class LigmaBallsGame extends FlameGame<LigmaWorld>
     with

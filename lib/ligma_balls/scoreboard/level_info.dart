@@ -6,6 +6,7 @@ import '../components/common.dart';
 import '../components/game_level.dart';
 import '../components/ligma_world.dart';
 import '../util/bitmap_font.dart';
+import '../util/fonts.dart';
 
 class LevelInfo extends PositionComponent with TapCallbacks {
   LevelInfo(Vector2 position) {

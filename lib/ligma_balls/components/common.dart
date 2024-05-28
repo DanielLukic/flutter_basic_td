@@ -5,13 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 
-import '../util/bitmap_font.dart';
-
 const double tileSize = 16;
-
-const textColor = Color(0xFFffcc80);
-const successColor = Color(0xFF20ff10);
-const errorColor = Color(0xFFff2010);
 
 const double gameWidth = 320;
 const double gameHeight = 320;
@@ -47,10 +41,6 @@ void repeat(int count, void Function(int) func) {
 
 bool debug = false;
 bool dev = kDebugMode;
-
-late BitmapFont fancyFont;
-late BitmapFont menuFont;
-late BitmapFont textFont;
 
 late Game game;
 late Images images;

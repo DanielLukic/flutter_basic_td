@@ -3,9 +3,9 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart';
 
-import '../util/bitmap_font.dart';
-import '../util/nine_patch_image.dart';
-import 'common.dart';
+import 'bitmap_font.dart';
+import 'fonts.dart';
+import 'nine_patch_image.dart';
 
 class BitmapButton extends PositionComponent
     with TapCallbacks, KeyboardHandler {

@@ -2,9 +2,10 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
-import '../components/bitmap_text.dart';
 import '../components/common.dart';
 import '../components/ligma_world.dart';
+import '../util/bitmap_text.dart';
+import '../util/fonts.dart';
 import 'defender_icon.dart';
 import 'level_info.dart';
 import 'placement_points.dart';

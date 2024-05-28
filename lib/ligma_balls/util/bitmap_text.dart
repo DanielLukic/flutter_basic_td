@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 
-import '../util/bitmap_font.dart';
-import 'common.dart';
+import 'bitmap_font.dart';
+import 'fonts.dart';
 
 class BitmapText extends PositionComponent {
   final String text;

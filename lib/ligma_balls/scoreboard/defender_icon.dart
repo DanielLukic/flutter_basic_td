@@ -15,6 +15,7 @@ import '../defenders/teej.dart';
 import '../defenders/twitch.dart';
 import '../util/bitmap_font.dart';
 import '../util/extensions.dart';
+import '../util/fonts.dart';
 
 class DefenderIcon extends PositionComponent with DragCallbacks {
   final TiledObject object;

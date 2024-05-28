@@ -2,9 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' hide Image;
 
-import '../components/common.dart';
 import '../components/game_level.dart';
 import '../util/bitmap_font.dart';
+import '../util/fonts.dart';
 
 class PlacementPoints extends Component {
   final double minStep = 5;
