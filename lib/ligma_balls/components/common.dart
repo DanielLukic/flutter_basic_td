@@ -62,9 +62,9 @@ final entityInfo = {
   // Attackers
   //
   'Diablo': 'The beast from hell!\nIs there even a way to stop this?!',
-  'Goblin': 'A Twitch Goblin. Asks stupid questions in\nTwitch chat to get on'
+  'Goblin': 'Thor\'s Goblin. Asks stupid questions in\nTwitch chat to get on'
       ' prime\'s nerves.',
-  'Ghostling': 'A Twitch Lurker. Careful: Throws Ligma Balls\nand knows VIM! '
+  'Ghostling': 'Thor\'s Lurker. Careful: Throws Ligma Balls\nand knows VIM! '
       'Interested in tech stuff!',
   'Subscriber': 'Thor\'s twitch subscribers are strong.\n'
       'Slow them down to hit them enough!',
