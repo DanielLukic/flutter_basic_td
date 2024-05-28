@@ -3,7 +3,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
 import '../components/common.dart';
-import '../components/ligma_world.dart';
+import '../level/game_level.dart';
 import '../util/bitmap_text.dart';
 import '../util/fonts.dart';
 import 'defender_icon.dart';
@@ -25,7 +25,7 @@ class Scoreboard extends PositionComponent {
     priority = 250;
 
     final pos = Vector2(180, 16);
-    final defenders = world.level!.defenders;
+    final defenders = level.defenders;
     for (final it in defenders) {
       add(DefenderIcon(it, pos));
       pos.x += 32;

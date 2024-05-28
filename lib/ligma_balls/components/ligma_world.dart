@@ -1,33 +1,15 @@
 import 'package:flame/components.dart';
 
-import '../level/game_level.dart';
-import 'common.dart';
+late final LigmaWorld world;
 
-final world = LigmaWorld();
-
-class LigmaWorld extends World {
-  GameLevel? level;
-
-  int levelId = dev ? 3 : 1;
-
+abstract class LigmaWorld extends World {
   int score = 0;
 
-  void prevLevel() {
-    if (levelId > 1) levelId--;
-    world.loadLevel();
-  }
+  void showTitle();
 
-  void nextLevel() {
-    game.assets.readBinaryFile('tiles/level${levelId + 1}.tmx').then((_) {
-      levelId++;
-      world.loadLevel();
-    }, onError: (_) {
-      world.loadLevel();
-    });
-  }
+  void prevLevel();
 
-  void loadLevel() {
-    if (level != null) remove(level!);
-    add(level = GameLevel(levelId));
-  }
+  void nextLevel();
+
+  void loadLevel();
 }

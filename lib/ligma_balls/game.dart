@@ -5,6 +5,7 @@ import 'package:flame/input.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ligma_balls/ligma_balls/ligma_world.dart';
 
 import 'components/common.dart';
 import 'components/ligma_world.dart';
@@ -21,8 +22,9 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
   //
   final _ticker = Ticker(ticks: 120);
 
-  LigmaBallsGame() : super(world: world) {
+  LigmaBallsGame() : super(world: ActualLigmaWorld()) {
     game = this;
+    world = this.world;
     images = this.images;
 
     if (kIsWeb) logAnsi = false;
@@ -76,7 +78,7 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
       charWidth: 12,
       charHeight: 12,
     );
-    world.loadLevel();
+    world.showTitle();
   }
 
   @override

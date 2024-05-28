@@ -2,7 +2,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../components/common.dart';
-import '../components/ligma_world.dart';
+import '../level/game_level.dart';
 
 Projectile fireProjectile(
   Projectile prototype,
@@ -13,7 +13,7 @@ Projectile fireProjectile(
   final projectile = prototype.clone();
   projectile.direction = dir;
   projectile.position.setFrom(origin.position);
-  world.level?.add(projectile);
+  level.add(projectile);
   return projectile;
 }
 

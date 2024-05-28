@@ -5,7 +5,6 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart' hide Image;
 
 import '../components/common.dart';
-import '../components/ligma_world.dart';
 import '../defenders/dipshit.dart';
 import '../defenders/lithium.dart';
 import '../defenders/neovim.dart';
@@ -89,11 +88,11 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   void onDragStart(DragStartEvent event) {
     super.onDragStart(event);
     if (!available) return;
-    if (dragged != null) world.level!.remove(dragged!);
+    if (dragged != null) level.remove(dragged!);
     dragged = SpriteComponent(sprite: prototype, anchor: Anchor.center);
     dragged!.priority = 800;
     dragged!.position = startPos + event.localPosition;
-    world.level!.add(dragged!);
+    level.add(dragged!);
 
     final radius = switch (object.name) {
       'Dipshit' => Dipshit.targetRadius,
@@ -122,7 +121,7 @@ class DefenderIcon extends PositionComponent with DragCallbacks {
   void onDragEnd(DragEndEvent event) {
     super.onDragEnd(event);
     if (dragged == null) return;
-    if (dragged != null) world.level!.remove(dragged!);
+    if (dragged != null) level.remove(dragged!);
     dragged = null;
     placement.executePlacement((it) {
       level.subPoints(price);
