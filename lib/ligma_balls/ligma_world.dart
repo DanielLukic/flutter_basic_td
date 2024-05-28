@@ -10,8 +10,14 @@ class ActualLigmaWorld extends LigmaWorld {
 
   @override
   void showTitle() {
+    _resetScore();
     _removeTitle();
     add(TitleScreen());
+  }
+
+  void _resetScore() {
+    score = 0;
+    startScore = 0;
   }
 
   void _removeTitle() {
@@ -20,12 +26,14 @@ class ActualLigmaWorld extends LigmaWorld {
 
   @override
   void prevLevel() {
+    _resetScore();
     if (levelId > 1) levelId--;
     world.loadLevel();
   }
 
   @override
   void nextLevel() {
+    startScore = score;
     game.assets.readBinaryFile('tiles/level${levelId + 1}.tmx').then((_) {
       levelId++;
       world.loadLevel();
@@ -36,6 +44,7 @@ class ActualLigmaWorld extends LigmaWorld {
 
   @override
   void loadLevel() {
+    score = startScore;
     _removeTitle();
     if (level != null) remove(level!);
     add(level = GameLevel(levelId));
