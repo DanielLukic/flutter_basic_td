@@ -12,7 +12,7 @@ import '../util/extensions.dart';
 import 'common.dart';
 import 'level_dialog.dart';
 import 'pills.dart';
-import 'scoreboard.dart';
+import '../scoreboard/scoreboard.dart';
 import 'trees.dart';
 import 'win_lose_conditions.dart';
 
