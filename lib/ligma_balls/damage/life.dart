@@ -17,6 +17,8 @@ mixin Life {
 
   double get remainingDamage => maxDamage - _damage;
 
+  bool get stillAlive => remainingDamage > 0;
+
   addLifeIndicatorTo(
     PositionComponent parent, {
     Sound deathSound = Sound.death,
