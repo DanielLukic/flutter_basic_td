@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:ligma_balls/ligma_balls/damage/projectile.dart';
 
 import '../components/common.dart';
 import '../components/soundboard.dart';
 import '../damage/auto_target_shooter.dart';
 import '../damage/life.dart';
+import '../damage/projectile.dart';
 import '../damage/projectiles.dart';
 import '../damage/taking_hits.dart';
 import 'placement.dart';
