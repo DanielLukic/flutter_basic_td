@@ -1,8 +1,8 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import 'common.dart';
-import 'ligma_world.dart';
+import '../components/common.dart';
+import '../components/ligma_world.dart';
 
 Projectile fireProjectile(
   Projectile prototype,

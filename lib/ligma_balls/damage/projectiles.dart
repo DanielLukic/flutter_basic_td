@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
-import 'package:ligma_balls/ligma_balls/components/projectile.dart';
+import 'package:ligma_balls/ligma_balls/damage/projectile.dart';
 
-import 'common.dart';
+import '../components/common.dart';
 
 Future<Projectile> makeProjectilePrototype(
   ProjectileKind kind,

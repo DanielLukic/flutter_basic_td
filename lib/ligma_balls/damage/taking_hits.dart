@@ -2,12 +2,12 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 
-import '../enemies/can_be_slowed_down.dart';
-import '../util/random.dart';
-import 'common.dart';
+import '../components/common.dart';
 import 'life.dart';
+import '../components/smoke.dart';
+import '../util/random.dart';
+import 'can_be_slowed_down.dart';
 import 'projectile.dart';
-import 'smoke.dart';
 
 mixin TakingHits on CollisionCallbacks, Life {
   late PositionComponent _self;

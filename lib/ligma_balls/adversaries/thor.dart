@@ -4,8 +4,8 @@ import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import '../components/common.dart';
-import '../components/projectile.dart';
 import '../components/smoke.dart';
+import '../damage/projectile.dart';
 
 class Thor extends SpriteComponent with CollisionCallbacks {
   //

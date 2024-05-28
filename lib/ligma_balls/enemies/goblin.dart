@@ -2,12 +2,12 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../adversaries/prime.dart';
-import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
-import '../components/life.dart';
-import '../components/projectiles.dart';
-import '../components/taking_hits.dart';
-import 'can_be_slowed_down.dart';
+import '../damage/auto_target_shooter.dart';
+import '../damage/can_be_slowed_down.dart';
+import '../damage/life.dart';
+import '../damage/projectiles.dart';
+import '../damage/taking_hits.dart';
 import 'waypoints.dart';
 
 class Goblin extends SpriteComponent

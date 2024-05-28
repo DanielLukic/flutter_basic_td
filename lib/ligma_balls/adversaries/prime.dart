@@ -4,12 +4,12 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-import '../components/auto_target_shooter.dart';
 import '../components/common.dart';
-import '../components/life.dart';
-import '../components/projectile.dart';
 import '../components/smoke.dart';
 import '../components/soundboard.dart';
+import '../damage/auto_target_shooter.dart';
+import '../damage/life.dart';
+import '../damage/projectile.dart';
 import '../util/random.dart';
 
 bool isDefender(PositionComponent it) => it is Defender || it is Prime;

@@ -2,9 +2,9 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../components/common.dart';
-import '../components/life.dart';
-import '../components/taking_hits.dart';
-import 'can_be_slowed_down.dart';
+import '../damage/can_be_slowed_down.dart';
+import '../damage/life.dart';
+import '../damage/taking_hits.dart';
 import 'waypoints.dart';
 
 class Subscriber extends SpriteComponent
