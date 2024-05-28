@@ -17,7 +17,7 @@ enum Sound {
 final soundboard = Soundboard();
 
 class Soundboard {
-  double masterVolume = 0.25;
+  double masterVolume = 0.1;
 
   preload() async {
     for (final it in Sound.values) {
