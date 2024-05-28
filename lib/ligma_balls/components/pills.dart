@@ -2,10 +2,10 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:ligma_balls/ligma_balls/components/ligma_world.dart';
 
-import '../defenders/placement.dart';
 import '../util/extensions.dart';
 import 'common.dart';
 import 'game_level.dart';
+import 'placement.dart';
 import 'pulsing.dart';
 
 class Pills extends Component {

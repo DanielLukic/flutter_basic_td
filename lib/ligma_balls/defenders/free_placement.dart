@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 
-import 'placement.dart';
+import '../components/placement.dart';
 
 mixin FreePlacementOnRemove on PositionComponent {
   @override

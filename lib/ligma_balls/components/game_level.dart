@@ -1,18 +1,17 @@
-import 'package:dart_minilog/dart_minilog.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
 import '../adversaries/prime.dart';
 import '../adversaries/thor.dart';
-import '../defenders/placement.dart';
 import '../enemies/enemies.dart';
 import '../enemies/waypoints.dart';
+import '../scoreboard/scoreboard.dart';
 import '../util/extensions.dart';
 import 'common.dart';
 import 'level_dialog.dart';
 import 'pills.dart';
-import '../scoreboard/scoreboard.dart';
+import 'placement.dart';
 import 'trees.dart';
 import 'win_lose_conditions.dart';
 
