@@ -14,7 +14,7 @@ class Lithium extends SpriteComponent
   //
   Lithium({required super.position, super.anchor = Anchor.center});
 
-  static const double targetRadius = 80;
+  static const double targetRadius = 32;
 
   @override
   onLoad() async {
@@ -23,13 +23,17 @@ class Lithium extends SpriteComponent
     final projectile = await makeProjectilePrototype(
       ProjectileKind.sub,
       isAttacker,
-      200,
+      100,
     );
 
-    add(
-      AutoTargetShooter(radius: targetRadius, projectile: projectile)
-        ..anchor = Anchor.center,
+    final shooter = AutoTargetShooter(
+      radius: targetRadius,
+      projectile: projectile,
+      reloadTime: 3,
     );
+    shooter.anchor = Anchor.center;
+
+    add(shooter);
     add(CircleHitbox(radius: size.x / 2));
 
     addLifeIndicatorTo(this, maxDamage: 10, deathSound: Sound.explosion);
