@@ -28,6 +28,7 @@ class Dipshit extends SpriteComponent
       isAttacker,
       80,
     );
+    projectile.lifetime = 1;
 
     add(
       AutoTargetShooter(
