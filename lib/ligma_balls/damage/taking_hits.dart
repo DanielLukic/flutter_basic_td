@@ -14,6 +14,8 @@ mixin TakingHits on CollisionCallbacks, Life {
   late bool Function(ProjectileKind) _doesCauseHit;
   late double Function(ProjectileKind) _modifier;
 
+  void Function(ProjectileKind) whenHit = (_) {};
+
   void initTakingHits(
     PositionComponent self, {
     bool Function(ProjectileKind)? whereKind,
@@ -47,6 +49,9 @@ mixin TakingHits on CollisionCallbacks, Life {
       if (_doesCauseHit(other.kind)) {
         final poopModifier = other.kind == ProjectileKind.poop ? 0.25 : 1;
         onHit(_self, damage: _modifier(other.kind) * poopModifier);
+      }
+      if (stillAlive) {
+        whenHit(other.kind);
       }
     }
   }
