@@ -30,6 +30,12 @@ class Scoreboard extends PositionComponent {
       add(DefenderIcon(it, pos));
       pos.x += 32;
     }
+    add(BitmapText(
+      text: '(Drag onto playfield)',
+      position: Vector2(180, 45),
+      tint: textColor,
+      scale: 0.25,
+    ));
 
     add(LevelInfo(Vector2(120, 56)));
     add(PlacementPoints());
