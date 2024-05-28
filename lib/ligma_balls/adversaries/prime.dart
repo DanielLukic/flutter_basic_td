@@ -3,6 +3,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:ligma_balls/ligma_balls/level/win_lose_conditions.dart';
 
 import '../components/common.dart';
 import '../components/smoke.dart';
@@ -27,6 +28,23 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
     priority = 50;
     add(CircleHitbox(isSolid: true, collisionType: CollisionType.active));
     addLifeIndicatorTo(this, maxDamage: 10);
+
+    deezNutz = SpriteComponent(
+      sprite: await game.loadSprite('deez_nutz.png'),
+      anchor: Anchor.centerRight,
+    );
+    deezNutz.position.x += size.x / 3;
+    deezNutz.position.y += size.y / 3;
+  }
+
+  late SpriteComponent deezNutz;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (state != WinLoseState.levelComplete) return;
+    if (deezNutz.parent != null) return;
+    add(deezNutz);
   }
 
   @override
