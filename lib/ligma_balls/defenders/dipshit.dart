@@ -41,7 +41,7 @@ class Dipshit extends SpriteComponent
     );
     add(CircleHitbox(radius: size.x / 2));
 
-    addLifeIndicatorTo(this, maxDamage: 10, deathSound: Sound.explosion);
+    addLifeIndicatorTo(this, maxDamage: 3, deathSound: Sound.explosion);
     initTakingHits(this);
   }
 
