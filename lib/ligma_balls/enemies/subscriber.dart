@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:ligma_balls/ligma_balls/enemies/convert_on_sub.dart';
 
 import '../components/common.dart';
 import '../damage/can_be_slowed_down.dart';
@@ -14,7 +15,8 @@ class Subscriber extends SpriteComponent
         CanBeSlowedDown,
         CollisionCallbacks,
         Life,
-        TakingHits {
+        TakingHits,
+        ConvertOnSub {
   //
   Subscriber({
     required super.position,

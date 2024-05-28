@@ -8,6 +8,7 @@ import '../damage/can_be_slowed_down.dart';
 import '../damage/life.dart';
 import '../damage/projectiles.dart';
 import '../damage/taking_hits.dart';
+import 'convert_on_sub.dart';
 import 'waypoints.dart';
 
 class Ghostling extends SpriteComponent
@@ -17,7 +18,8 @@ class Ghostling extends SpriteComponent
         CanBeSlowedDown,
         CollisionCallbacks,
         Life,
-        TakingHits {
+        TakingHits,
+        ConvertOnSub {
   //
   Ghostling({
     required super.position,

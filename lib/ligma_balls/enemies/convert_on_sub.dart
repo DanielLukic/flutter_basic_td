@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:ligma_balls/ligma_balls/components/pulsing.dart';
 
 import '../components/common.dart';
+import '../components/pulsing.dart';
 import '../damage/life.dart';
 import '../damage/taking_hits.dart';
 import '../level/game_level.dart';
@@ -44,7 +44,10 @@ class RotatingSub extends PositionComponent with CollisionCallbacks {
   }
 
   @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
     super.onCollisionStart(intersectionPoints, other);
     if (other case Life it) {
       it.onHit(it as PositionComponent);
