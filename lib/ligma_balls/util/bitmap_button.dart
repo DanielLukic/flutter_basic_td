@@ -16,7 +16,7 @@ class BitmapButton extends PositionComponent
   final double fontScale;
   final Color tint;
   final int cornerSize;
-  final Function onTap;
+  final Function(BitmapButton) onTap;
   final List<String> shortcuts;
 
   BitmapButton({
@@ -51,7 +51,7 @@ class BitmapButton extends PositionComponent
   }
 
   @override
-  void onTapUp(TapUpEvent event) => onTap();
+  void onTapUp(TapUpEvent event) => onTap(this);
 
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
@@ -59,7 +59,7 @@ class BitmapButton extends PositionComponent
     if (event is! KeyDownEvent) return true;
     if (event case KeyDownEvent it) {
       if (shortcuts.contains(it.logicalKey.keyLabel)) {
-        onTap();
+        onTap(this);
         return true;
       }
     }

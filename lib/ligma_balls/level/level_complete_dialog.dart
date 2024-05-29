@@ -37,7 +37,7 @@ class LevelCompleteDialog extends Component {
       size: Vector2(80, 24),
       fontScale: 0.5,
       shortcuts: ['Enter', ' '],
-      onTap: () {
+      onTap: (_) {
         world.loadLevel();
         parent?.remove(this);
       },
@@ -50,7 +50,7 @@ class LevelCompleteDialog extends Component {
       size: Vector2(80, 24),
       fontScale: 0.5,
       shortcuts: ['r'],
-      onTap: () {
+      onTap: (_) {
         world.nextLevel();
         parent?.remove(this);
       },

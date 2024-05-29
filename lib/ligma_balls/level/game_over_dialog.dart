@@ -37,7 +37,7 @@ class GameOverDialog extends Component {
       size: Vector2(80, 24),
       fontScale: 0.5,
       shortcuts: ['Enter', ' '],
-      onTap: () {
+      onTap: (_) {
         world.loadLevel();
         parent?.remove(this);
       },

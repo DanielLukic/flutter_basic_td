@@ -10,6 +10,7 @@ class ActualLigmaWorld extends LigmaWorld {
 
   @override
   void showTitle() {
+    _removeLevel();
     _resetScore();
     _removeTitle();
     add(TitleScreen());
@@ -46,7 +47,12 @@ class ActualLigmaWorld extends LigmaWorld {
   void loadLevel() {
     score = startScore;
     _removeTitle();
-    if (level != null) remove(level!);
+    _removeLevel();
     add(level = GameLevel(levelId));
+  }
+
+  void _removeLevel() {
+    if (level != null) remove(level!);
+    level = null;
   }
 }

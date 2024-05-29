@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:ligma_balls/ligma_balls/components/common.dart';
 import 'package:ligma_balls/ligma_balls/components/soundboard.dart';
 import 'package:ligma_balls/ligma_balls/util/bitmap_button.dart';
@@ -19,13 +20,16 @@ class TitleScreen extends Component {
       size: Vector2(gameWidth, gameHeight),
       anchor: Anchor.topLeft,
     );
+    title.opacity = 0;
+    title.add(OpacityEffect.to(1, EffectController(duration: 0.2)));
+
     add(title);
-    add(RectangleComponent(
+    title.add(RectangleComponent(
       position: Vector2(0, 0),
       size: Vector2(gameWidth, 30),
       paint: Paint()..color = const Color(0xC0000000),
     ));
-    add(BitmapText(
+    title.add(BitmapText(
       text: 'Ligma Balls',
       position: Vector2(160, 4),
       font: fancyFont,
@@ -42,7 +46,7 @@ class TitleScreen extends Component {
     final buttonImage = await images.load('buttonbox.png');
 
     doAt(2500, () {
-      add(BitmapText(
+      title.add(BitmapText(
         text: 'DEFEND',
         position: Vector2(160, 40),
         font: fancyFont,
@@ -53,7 +57,7 @@ class TitleScreen extends Component {
       soundboard.play(Sound.rock);
     });
     doAt(3500, () {
-      add(BitmapText(
+      title.add(BitmapText(
         text: 'PRIME\'S',
         position: Vector2(160, 60),
         font: fancyFont,
@@ -64,7 +68,7 @@ class TitleScreen extends Component {
       soundboard.play(Sound.rock);
     });
     doAt(4500, () {
-      add(BitmapText(
+      title.add(BitmapText(
         text: 'MUSTACHE(TM)',
         position: Vector2(160, 80),
         font: fancyFont,
@@ -74,13 +78,17 @@ class TitleScreen extends Component {
       soundboard.play(Sound.rock);
       soundboard.play(Sound.rock);
 
-      add(BitmapButton(
+      title.add(BitmapButton(
         bgNinePatch: buttonImage,
         text: 'Start',
         position: Vector2(100, 250),
         size: Vector2(120, 32),
         cornerSize: 8,
-        onTap: () => world.loadLevel(),
+        onTap: (it) {
+          it.removeFromParent();
+          title.add(OpacityEffect.to(0, EffectController(duration: 0.2)));
+          doAt(200, () => world.loadLevel());
+        },
       ));
     });
   }
