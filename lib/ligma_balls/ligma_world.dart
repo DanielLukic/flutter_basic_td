@@ -1,3 +1,5 @@
+import 'package:ligma_balls/ligma_balls/finish/finish_screen.dart';
+
 import 'components/common.dart';
 import 'components/ligma_world.dart';
 import 'level/game_level.dart';
@@ -39,7 +41,7 @@ class ActualLigmaWorld extends LigmaWorld {
       levelId++;
       world.loadLevel();
     }, onError: (_) {
-      world.loadLevel();
+      showFinish();
     });
   }
 
@@ -54,5 +56,12 @@ class ActualLigmaWorld extends LigmaWorld {
   void _removeLevel() {
     if (level != null) remove(level!);
     level = null;
+  }
+
+  @override
+  void showFinish() {
+    _removeLevel();
+    _removeTitle();
+    add(FinishScreen());
   }
 }

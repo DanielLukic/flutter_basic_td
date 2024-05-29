@@ -108,6 +108,10 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
         debug = !debug;
         return KeyEventResult.handled;
       }
+      if (event.character == 'f') {
+        world.showFinish();
+        return KeyEventResult.handled;
+      }
       if (event.character == 'L') {
         world.prevLevel();
         return KeyEventResult.handled;

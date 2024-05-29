@@ -13,4 +13,6 @@ abstract class LigmaWorld extends World {
   void nextLevel();
 
   void loadLevel();
+
+  void showFinish();
 }
