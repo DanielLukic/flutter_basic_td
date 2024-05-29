@@ -3,9 +3,11 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:flame/extensions.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import '../components/common.dart';
+import '../util/random.dart';
 
 late Waypoints waypoints;
 
@@ -19,25 +21,56 @@ class FollowWaypoints extends Component {
     }
   }
 
+  Path? chosenPath;
+
   @override
   void update(double dt) {
+    chosenPath ??= waypoints.choosePath();
+
     final position = (parent as PositionComponent).position;
-    waypoints.setPositionAt(_waytime, 25, position);
+    waypoints.setPositionAt(chosenPath!, _waytime, 25, position);
     _waytime += dt;
-    if (waypoints.reachedEnd(_waytime, 25)) {
+    if (waypoints.reachedEnd(chosenPath!, _waytime, 25)) {
       parent?.add(RemoveEffect(delay: 0.1));
     }
   }
 }
 
+typedef Path = List<(Vector2, double)>;
+
 class Waypoints extends Component with HasVisibility {
   final ObjectGroup group;
 
-  final path = <(Vector2, double)>[];
+  late final List<Path> paths;
+
+  Path choosePath() => paths.random(random);
 
   Waypoints(this.group) {
-    for (final it in group.objects) {
-      path.add((Vector2(it.x, it.y), 0));
+    if (group.objects.isEmpty) {
+      throw ArgumentError('Waypoints layer has to contain Points or Polylines');
+    }
+    if (group.objects.first.isPoint) {
+      final points = group.objects.map((it) => it.position);
+      paths = [_makePath(points.toList())];
+    } else {
+      paths = [];
+      for (final p in group.objects) {
+        if (!p.isPolyline) {
+          throw ArgumentError('Unsupported waypoint type: ${p.type}');
+        }
+        final points = p.polyline.map((it) => Vector2(
+              p.position.x + it.x,
+              p.position.y + it.y,
+            ));
+        paths.add(_makePath(points.toList()));
+      }
+    }
+  }
+
+  Path _makePath(List<Vector2> points) {
+    final Path path = [];
+    for (final it in points) {
+      path.add((it, 0));
 
       final comp = CircleComponent(
         position: Vector2(it.x, it.y),
@@ -49,7 +82,7 @@ class Waypoints extends Component with HasVisibility {
       );
       add(comp);
 
-      final idx = group.objects.indexOf(it).toString();
+      final idx = points.indexOf(it).toString();
       add(
         TextComponent(
           text: idx,
@@ -68,9 +101,11 @@ class Waypoints extends Component with HasVisibility {
       final dist = sqrt(dx * dx + dy * dy);
       path[i] = (a.$1, dist);
     }
+
+    return path;
   }
 
-  void setPositionAt(double waytime, double speed, Vector2 out) {
+  void setPositionAt(Path path, double waytime, double speed, Vector2 out) {
     var at = waytime * speed;
     for (var i = 0; i < path.length - 1; i++) {
       final a = path[i];
@@ -85,7 +120,7 @@ class Waypoints extends Component with HasVisibility {
     }
   }
 
-  bool reachedEnd(double waytime, double speed) {
+  bool reachedEnd(Path path, double waytime, double speed) {
     var at = waytime * speed;
     for (var i = 0; i < path.length - 1; i++) {
       final a = path[i];
