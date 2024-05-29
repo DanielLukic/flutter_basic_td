@@ -52,7 +52,7 @@ class Pills extends Component {
     }
     for (final key in consume) {
       final it = tiles.remove(key)!;
-      level.addPoints(it.$1 == 234 ? 20 : 40);
+      level.addPoints(it.$1 == 234 ? 15 : 30);
       world.score += 5;
       remove(it.$2);
     }
