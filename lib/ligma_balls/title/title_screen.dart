@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:ligma_balls/ligma_balls/components/common.dart';
-import 'package:ligma_balls/ligma_balls/components/soundboard.dart';
-import 'package:ligma_balls/ligma_balls/util/bitmap_button.dart';
-import 'package:ligma_balls/ligma_balls/util/bitmap_text.dart';
-import 'package:ligma_balls/ligma_balls/util/fonts.dart';
 
+import '../components/common.dart';
 import '../components/ligma_world.dart';
+import '../components/soundboard.dart';
+import '../util/bitmap_button.dart';
+import '../util/bitmap_text.dart';
+import '../util/fonts.dart';
 
 class TitleScreen extends Component {
   @override

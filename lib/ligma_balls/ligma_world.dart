@@ -1,7 +1,7 @@
 import 'components/common.dart';
 import 'components/ligma_world.dart';
 import 'level/game_level.dart';
-import 'title/title.dart';
+import 'title/title_screen.dart';
 
 class ActualLigmaWorld extends LigmaWorld {
   GameLevel? level;
