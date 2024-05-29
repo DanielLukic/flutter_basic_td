@@ -36,6 +36,8 @@ class Placement extends Component with HasVisibility {
   late int levelHeight;
   late List<bool> available;
 
+  final bgOk = [37, 70, 65];
+
   @override
   void onLoad() {
     final bgap = _map.requireTileLayer('BackgroundAndPath');
@@ -50,7 +52,7 @@ class Placement extends Component with HasVisibility {
     final data = List.generate(bgap.width * bgap.height, (it) {
       var available = true;
       final bg = bgap.data![it];
-      if (bg != 37) available = false;
+      if (!bgOk.contains(bg)) available = false;
       if (rocks.data![it] != 0) available = false;
       if (trees.data![it] == 110) available = false;
       if (trees.data![it] == 111) available = false;
