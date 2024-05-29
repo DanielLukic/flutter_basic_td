@@ -45,6 +45,7 @@ class Prime extends SpriteComponent with CollisionCallbacks, Life {
     if (state != WinLoseState.levelComplete) return;
     if (deezNutz.parent != null) return;
     add(deezNutz);
+    priority = 20000;
   }
 
   @override

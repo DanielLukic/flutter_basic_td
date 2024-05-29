@@ -37,6 +37,7 @@ class Thor extends SpriteComponent with CollisionCallbacks {
     if (state != WinLoseState.gameOver) return;
     if (ligmaBalls.parent != null) return;
     add(ligmaBalls);
+    priority = 20000;
   }
 
   @override
