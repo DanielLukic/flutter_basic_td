@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:ligma_balls/ligma_balls/components/common.dart';
@@ -22,32 +20,13 @@ class FinishScreen extends Component {
     );
     title.opacity = 0;
     title.add(OpacityEffect.to(1, EffectController(duration: 0.2)));
-
     add(title);
-    title.add(RectangleComponent(
-      position: Vector2(0, 0),
-      size: Vector2(gameWidth, 30),
-      paint: Paint()..color = const Color(0xC0000000),
-    ));
-    title.add(BitmapText(
-      text: 'Ligma Balls',
-      position: Vector2(160, 4),
-      font: fancyFont,
-      scale: 2,
-      anchor: Anchor.topCenter,
-    ));
-
-    for (final at in [250, 350, 450, 1000]) {
-      Future.delayed(Duration(milliseconds: at)).then((_) {
-        soundboard.play(Sound.ligma_balls);
-      });
-    }
 
     const text = 'You successfully defended Prime\'s Mustache(TM)!';
     final words = text.split(' ');
-    const delay = 1000;
+    const delay = 400;
     var at = delay;
-    double y = 60;
+    double y = 75;
     for (final word in words) {
       final yy = y;
       doAt(at, () {
