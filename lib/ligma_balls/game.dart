@@ -79,7 +79,11 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
       charWidth: 12,
       charHeight: 12,
     );
-    world.showTitle();
+    if (dev) {
+      world.loadLevel();
+    } else {
+      world.showTitle();
+    }
   }
 
   @override
