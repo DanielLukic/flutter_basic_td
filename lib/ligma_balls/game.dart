@@ -128,6 +128,10 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
         if (_timeScale < 4.0) _timeScale *= 2;
         return KeyEventResult.handled;
       }
+      if (event.character == 't') {
+        world.showTitle();
+        return KeyEventResult.handled;
+      }
     }
     return super.onKeyEvent(event, keysPressed);
   }
