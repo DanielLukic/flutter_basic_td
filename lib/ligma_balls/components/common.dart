@@ -40,7 +40,7 @@ void repeat(int count, void Function(int) func) {
 }
 
 bool debug = false;
-bool dev = kDebugMode;
+bool dev = false; // kDebugMode;
 
 late Game game;
 late Images images;

@@ -17,9 +17,17 @@ class BitmapText extends PositionComponent {
     BitmapFont? font,
     double scale = 1,
     this.tint,
+    Anchor anchor = Anchor.topLeft,
   })  : font = font ?? textFont,
         fontScale = scale {
     this.position = position;
+    this.font.scale = fontScale;
+    final w = this.font.lineWidth(text);
+    final h = this.font.lineHeight();
+    final x = anchor.x * w;
+    final y = anchor.y * h;
+    this.position.x -= x;
+    this.position.y -= y;
   }
 
   @override

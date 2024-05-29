@@ -27,9 +27,10 @@ class TitleScreen extends Component {
     ));
     add(BitmapText(
       text: 'Ligma Balls',
-      position: Vector2(40, 0),
+      position: Vector2(160, 4),
       font: fancyFont,
       scale: 2,
+      anchor: Anchor.topCenter,
     ));
 
     for (final at in [250, 350, 450, 1000]) {
@@ -43,9 +44,10 @@ class TitleScreen extends Component {
     doAt(2500, () {
       add(BitmapText(
         text: 'DEFEND',
-        position: Vector2(90, 40),
+        position: Vector2(160, 40),
         font: fancyFont,
         scale: 2,
+        anchor: Anchor.topCenter,
       ));
       soundboard.play(Sound.rock);
       soundboard.play(Sound.rock);
@@ -53,9 +55,10 @@ class TitleScreen extends Component {
     doAt(3500, () {
       add(BitmapText(
         text: 'PRIME\'S',
-        position: Vector2(85, 60),
+        position: Vector2(160, 60),
         font: fancyFont,
         scale: 2,
+        anchor: Anchor.topCenter,
       ));
       soundboard.play(Sound.rock);
       soundboard.play(Sound.rock);
@@ -63,9 +66,10 @@ class TitleScreen extends Component {
     doAt(4500, () {
       add(BitmapText(
         text: 'MUSTACHE(TM)',
-        position: Vector2(20, 80),
+        position: Vector2(160, 80),
         font: fancyFont,
         scale: 2,
+        anchor: Anchor.topCenter,
       ));
       soundboard.play(Sound.rock);
       soundboard.play(Sound.rock);

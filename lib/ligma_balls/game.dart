@@ -58,8 +58,9 @@ class LigmaBallsGame extends FlameGame<LigmaWorld>
   onLoad() async {
     soundboard.preload();
 
-    fancyFont = await BitmapFont.loadMono(
+    fancyFont = await BitmapFont.loadDst(
       images,
+      assets,
       'fonts/fancyfont.png',
       charWidth: 12,
       charHeight: 10,
