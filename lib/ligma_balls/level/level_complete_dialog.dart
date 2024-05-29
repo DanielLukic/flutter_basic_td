@@ -45,7 +45,7 @@ class LevelCompleteDialog extends Component {
     dialog.add(BitmapButton(
       bgNinePatch: await images.load('buttonbox.png'),
       cornerSize: 8,
-      text: 'Next Level',
+      text: 'Continue',
       position: Vector2(130, 60),
       size: Vector2(80, 24),
       fontScale: 0.5,
