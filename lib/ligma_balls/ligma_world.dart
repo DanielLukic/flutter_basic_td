@@ -6,7 +6,7 @@ import 'title/title.dart';
 class ActualLigmaWorld extends LigmaWorld {
   GameLevel? level;
 
-  int levelId = dev ? 3 : 1;
+  int levelId = dev ? 4 : 1;
 
   @override
   void showTitle() {
